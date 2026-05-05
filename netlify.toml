@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = ".output/public"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--version"
+
+# Netlify functions for Nitro
+[functions]
+  node_wrapper = "babel"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
