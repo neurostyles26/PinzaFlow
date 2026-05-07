@@ -1,6 +1,7 @@
-# PinzaFlow
+# PinFlowser
 
-PinzaFlow is a WhatsApp CRM and AI-powered sales automation platform for small businesses in Latin America.
+PinFlowser is an AI-powered WhatsApp CRM and Sales Clouser platform for Latin American businesses.
+Slogan: "Tu clouser inteligente siempre activo."
 
 ## Tech Stack
 - **Frontend**: Nuxt 3 (Vue 3)

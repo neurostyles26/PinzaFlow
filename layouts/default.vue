@@ -6,10 +6,8 @@
       :class="{ '-translate-x-full lg:translate-x-0': !isSidebarOpen }"
     >
       <div class="p-6 flex items-center gap-3">
-        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-primary/30">
-          <span class="text-background font-bold text-xl">P</span>
-        </div>
-        <h1 class="text-xl font-bold tracking-tight text-white">PinzaFlow</h1>
+        <img src="/PinFlowSer-PWA.png" alt="PinFlowser Logo" class="w-8 h-8 rounded-lg shadow-lg shadow-primary/30" />
+        <h1 class="text-xl font-bold tracking-tight text-white">PinFlowser</h1>
       </div>
 
       <nav class="flex-1 px-4 py-4 space-y-2">
@@ -91,7 +89,8 @@ import {
   Menu, 
   Search, 
   Bell,
-  LogOut
+  LogOut,
+  Bot
 } from 'lucide-vue-next'
 
 const supabase = useSupabaseClient()
@@ -102,6 +101,7 @@ const isSidebarOpen = ref(false)
 
 const navItems = [
   { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
+  { name: 'Clouser AI', path: '/clouser', icon: Bot },
   { name: 'Conversations', path: '/conversations', icon: MessageSquare },
   { name: 'Clients', path: '/clients', icon: Users },
   { name: 'Automations', path: '/automations', icon: Zap },
@@ -110,7 +110,7 @@ const navItems = [
 
 const currentPageName = computed(() => {
   const item = navItems.find(i => i.path === route.path)
-  return item ? item.name : 'PinzaFlow'
+  return item ? item.name : 'PinFlowser'
 })
 
 const userName = computed(() => user.value?.user_metadata?.full_name || user.value?.email || 'User')

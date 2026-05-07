@@ -29,16 +29,16 @@ export default defineNuxtConfig({
   pwa: {
     registerType: 'autoUpdate',
     manifest: {
-      name: 'PinzaFlow — WhatsApp CRM & AI Automation',
-      short_name: 'PinzaFlow',
-      description: 'The ultimate WhatsApp CRM for small businesses in Latin America. Manage conversations, track clients, and boost sales with AI.',
+      name: 'PinFlowser — Tu clouser inteligente siempre activo',
+      short_name: 'PinFlowser',
+      description: 'The ultimate WhatsApp CRM and AI Sales Clouser for small businesses in Latin America. Automate conversations and close more sales with AI.',
       theme_color: '#0F172A',
       background_color: '#0F172A',
       display: 'standalone',
       orientation: 'portrait',
       scope: '/',
       start_url: '/',
-      categories: ['business', 'productivity'],
+      categories: ['business', 'productivity', 'sales'],
       icons: [
         { src: 'icon-72x72.png', sizes: '72x72', type: 'image/png' },
         { src: 'icon-96x96.png', sizes: '96x96', type: 'image/png' },
@@ -62,21 +62,21 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'PinzaFlow — WhatsApp CRM & AI Automation',
+      title: 'PinFlowser — Tu clouser inteligente siempre activo',
       htmlAttrs: { lang: 'es' },
       meta: [
-        { name: 'description', content: 'The ultimate WhatsApp CRM for small businesses in LatAm. Manage conversations, track clients, and boost sales with AI.' },
+        { name: 'description', content: 'The ultimate WhatsApp CRM and AI Sales Clouser for LatAm. Automate conversations and close more sales with AI.' },
         { name: 'theme-color', content: '#0F172A' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
-        { name: 'apple-mobile-web-app-title', content: 'PinzaFlow' },
-        { property: 'og:title', content: 'PinzaFlow — WhatsApp CRM & AI Automation' },
-        { property: 'og:description', content: 'Manage WhatsApp conversations, track clients, and boost sales with AI. Built for LatAm small businesses.' },
+        { name: 'apple-mobile-web-app-title', content: 'PinFlowser' },
+        { property: 'og:title', content: 'PinFlowser — Tu clouser inteligente siempre activo' },
+        { property: 'og:description', content: 'Transform WhatsApp conversations into automated sales with our AI Sales Clouser platform.' },
         { property: 'og:type', content: 'website' },
         { property: 'og:image', content: '/icon-512x512.png' },
         { name: 'twitter:card', content: 'summary' },
-        { name: 'twitter:title', content: 'PinzaFlow' },
-        { name: 'twitter:description', content: 'WhatsApp CRM & AI Sales Automation for LatAm' }
+        { name: 'twitter:title', content: 'PinFlowser' },
+        { name: 'twitter:description', content: 'WhatsApp CRM & AI Sales Clouser for LatAm' }
       ],
       link: [
         { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },

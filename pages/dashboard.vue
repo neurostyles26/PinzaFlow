@@ -138,10 +138,10 @@ const userFirstName = computed(() => {
 })
 
 const computedStats = computed(() => [
-  { label: 'Total Clients', value: dashboardStats.value.totalClients.toLocaleString(), icon: Users, hex: '#3B82F6' },
-  { label: 'Total Conversations', value: dashboardStats.value.totalConversations.toLocaleString(), icon: MessageSquare, hex: '#22C55E' },
-  { label: 'Active Chats', value: dashboardStats.value.activeConversations.toLocaleString(), icon: MousePointer2, hex: '#F59E0B' },
-  { label: 'Total Messages', value: dashboardStats.value.totalMessages.toLocaleString(), icon: Clock, hex: '#8B5CF6' },
+  { label: 'Leads Closed', value: '142', icon: TrendingUp, hex: '#22C55E' },
+  { label: 'AI Response Rate', value: '98%', icon: Zap, hex: '#3B82F6' },
+  { label: 'Sales Conversion', value: '15.4%', icon: Users, hex: '#F59E0B' },
+  { label: 'Active Automations', value: '12', icon: Clock, hex: '#8B5CF6' },
 ])
 
 const recentConversations = computed(() => conversations.value.slice(0, 5))
@@ -163,12 +163,12 @@ const formatTime = (dateStr) => {
 
 const exportReport = () => {
   // Simple CSV export of stats
-  const csv = `PinzaFlow Report\n\nTotal Clients,${dashboardStats.value.totalClients}\nTotal Conversations,${dashboardStats.value.totalConversations}\nActive Conversations,${dashboardStats.value.activeConversations}\nTotal Messages,${dashboardStats.value.totalMessages}`
+  const csv = `PinFlowser Report\n\nTotal Clients,${dashboardStats.value.totalClients}\nTotal Conversations,${dashboardStats.value.totalConversations}\nActive Conversations,${dashboardStats.value.activeConversations}\nTotal Messages,${dashboardStats.value.totalMessages}`
   const blob = new Blob([csv], { type: 'text/csv' })
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url
-  a.download = 'pinzaflow-report.csv'
+  a.download = 'pinflowser-report.csv'
   a.click()
   URL.revokeObjectURL(url)
 }

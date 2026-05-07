@@ -84,7 +84,7 @@
         <h3 class="font-bold text-lg">WhatsApp Integration</h3>
         <span class="px-3 py-1 bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 rounded-full text-xs font-bold">Coming Soon</span>
       </div>
-      <p class="text-sm text-text-secondary">Connect your WhatsApp Business API to send and receive messages directly from PinzaFlow.</p>
+      <p class="text-sm text-text-secondary">Connect your WhatsApp Business API to send and receive messages directly from PinFlowser.</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label class="block text-sm font-medium text-text-secondary mb-1.5">Phone Number ID</label>
@@ -104,7 +104,7 @@
       <div class="flex items-center justify-between py-2">
         <div>
           <p class="text-sm font-medium">Sign Out</p>
-          <p class="text-xs text-text-secondary mt-0.5">Sign out of your PinzaFlow account.</p>
+          <p class="text-xs text-text-secondary mt-0.5">Sign out of your PinFlowser account.</p>
         </div>
         <button @click="handleLogout" class="px-4 py-2 border border-white/10 rounded-xl hover:bg-white/5 transition-all text-sm font-medium">
           Sign Out
@@ -177,7 +177,7 @@ const notifications = ref([
   { id: 1, label: 'New Message Alerts', description: 'Get notified when a client sends you a message.', enabled: true },
   { id: 2, label: 'Lead Notifications', description: 'Receive alerts when new leads are captured.', enabled: true },
   { id: 3, label: 'Automation Reports', description: 'Weekly summary of your automation performance.', enabled: false },
-  { id: 4, label: 'Product Updates', description: 'Stay informed about new PinzaFlow features.', enabled: true },
+  { id: 4, label: 'Product Updates', description: 'Stay informed about new PinFlowser features.', enabled: true },
 ])
 
 const saveProfile = async () => {

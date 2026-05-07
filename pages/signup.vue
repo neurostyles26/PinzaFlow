@@ -2,8 +2,8 @@
   <div class="min-h-screen flex items-center justify-center bg-background p-6">
     <div class="w-full max-w-md space-y-8">
       <div class="text-center">
-        <div class="mx-auto w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-xl shadow-primary/30 mb-4">
-          <span class="text-background font-bold text-2xl">P</span>
+        <div class="mx-auto flex justify-center mb-4">
+          <img src="/PinFlowSer-PWA.png" alt="PinFlowser Logo" class="w-12 h-12 rounded-xl shadow-xl shadow-primary/30" />
         </div>
         <h1 class="text-3xl font-bold text-white tracking-tight">Create an account</h1>
         <p class="mt-2 text-text-secondary">Start automating your WhatsApp sales today</p>
