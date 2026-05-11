@@ -44,7 +44,7 @@ export default defineEventHandler(async (event) => {
     })
 
     return { success: true, data: response }
-  } catch (err: any) {
+  } catch (err) {
     console.error('WhatsApp API Error:', err.data || err.message)
     throw createError({
       statusCode: err.statusCode || 500,

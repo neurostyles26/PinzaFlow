@@ -414,7 +414,7 @@ const testConnection = async () => {
       body: { test_phone: testPhone.value }
     })
     testResult.value = { success: true, message: res.message }
-  } catch (err: any) {
+  } catch (err) {
     testResult.value = { success: false, message: err.statusMessage || 'Error al conectar con WhatsApp' }
   } finally {
     testing.value = false
