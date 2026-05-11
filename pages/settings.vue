@@ -147,71 +147,70 @@
             <div class="p-10 rounded-[3rem] bg-surface/50 border border-white/5 shadow-2xl relative overflow-hidden">
               <div class="flex items-center gap-4 mb-10">
                 <div class="w-1.5 h-8 bg-primary rounded-full"></div>
-                <h3 class="text-2xl font-black">WhatsApp Cloud API</h3>
+                <h3 class="text-3xl font-black">WhatsApp Cloud API</h3>
+                <p class="text-text-secondary">Conecta tu cuenta de Meta para automatizar tus ventas.</p>
               </div>
               
-              <div class="mb-10 space-y-6">
-                <div class="p-6 rounded-2xl bg-primary/5 border border-primary/10">
-                  <p class="text-sm text-primary font-bold mb-4 flex items-center gap-2">
-                    <Zap class="w-4 h-4" />
-                    Guía de Configuración Paso a Paso
-                  </p>
-                  <div class="space-y-4 text-xs text-text-secondary">
-                    <div class="flex gap-3">
-                      <span class="flex-shrink-0 w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold">1</span>
-                      <p>Crea una aplicación tipo "Business" en el portal de <a href="https://developers.facebook.com/" target="_blank" class="text-primary hover:underline font-bold">Meta for Developers</a>.</p>
+              <!-- Premium Step-by-Step Guide -->
+              <div class="mb-12">
+                <div class="flex items-center gap-3 mb-8">
+                  <div class="p-3 rounded-2xl bg-primary/10 text-primary">
+                    <Zap class="w-6 h-6" />
+                  </div>
+                  <h4 class="text-xl font-bold">Guía de Configuración Rápida</h4>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                  <!-- Step 1 -->
+                  <div class="p-6 rounded-[2rem] bg-white/5 border border-white/5 hover:border-primary/20 transition-all group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-3xl -mr-12 -mt-12 group-hover:bg-primary/10 transition-all"></div>
+                    <div class="relative z-10">
+                      <span class="text-4xl font-black text-primary/20 group-hover:text-primary/40 transition-all">01</span>
+                      <h5 class="text-lg font-bold mt-4 mb-2">Portal de Meta</h5>
+                      <p class="text-xs text-text-secondary leading-relaxed">Registra tu app como <span class="text-white font-bold">"Business"</span> en <a href="https://developers.facebook.com/" target="_blank" class="text-primary hover:underline">Meta Developers</a> y añade el producto de WhatsApp.</p>
                     </div>
-                    <div class="flex gap-3">
-                      <span class="flex-shrink-0 w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold">2</span>
-                      <p>Añade el producto "WhatsApp" a tu aplicación.</p>
+                  </div>
+
+                  <!-- Step 2 -->
+                  <div class="p-6 rounded-[2rem] bg-white/5 border border-white/5 hover:border-primary/20 transition-all group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-3xl -mr-12 -mt-12 group-hover:bg-primary/10 transition-all"></div>
+                    <div class="relative z-10">
+                      <span class="text-4xl font-black text-primary/20 group-hover:text-primary/40 transition-all">02</span>
+                      <h5 class="text-lg font-bold mt-4 mb-2">Obtén Credenciales</h5>
+                      <p class="text-xs text-text-secondary leading-relaxed">Copia el <span class="text-white font-bold">Phone Number ID</span> y genera un <span class="text-white font-bold">System User Access Token</span> permanente para evitar desconexiones.</p>
                     </div>
-                    <div class="flex gap-3">
-                      <span class="flex-shrink-0 w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold">3</span>
-                      <p>En "Configuración de API", copia el <strong>ID de identificador de número de teléfono</strong>.</p>
-                    </div>
-                    <div class="flex gap-3">
-                      <span class="flex-shrink-0 w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold">4</span>
-                      <p>Genera un <strong>Token de Acceso Permanente</strong> (o usa el temporal para pruebas).</p>
-                    </div>
-                    <div class="flex gap-3">
-                      <span class="flex-shrink-0 w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold">5</span>
-                      <p>Configura el Webhook usando tu <strong>Verify Token</strong> personalizado para recibir mensajes.</p>
+                  </div>
+
+                  <!-- Step 3 -->
+                  <div class="p-6 rounded-[2rem] bg-white/5 border border-white/5 hover:border-primary/20 transition-all group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-3xl -mr-12 -mt-12 group-hover:bg-primary/10 transition-all"></div>
+                    <div class="relative z-10">
+                      <span class="text-4xl font-black text-primary/20 group-hover:text-primary/40 transition-all">03</span>
+                      <h5 class="text-lg font-bold mt-4 mb-2">Configura Webhooks</h5>
+                      <p class="text-xs text-text-secondary leading-relaxed">Usa tu <span class="text-white font-bold">Verify Token</span> en la configuración de Meta para permitir que PinFlowser reciba tus mensajes.</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <form @submit.prevent="saveProfile" class="space-y-8">
-                <div class="space-y-6">
-                  <div class="space-y-2">
-                    <label class="text-xs font-black text-text-secondary uppercase tracking-[0.2em] ml-1">Phone Number ID</label>
-                    <input 
-                      v-model="form.whatsapp_phone_number_id" 
-                      type="text" 
-                      class="input-field w-full" 
-                      placeholder="ej. 102938475610293" 
-                    />
-                  </div>
-
-                  <div class="space-y-2">
-                    <label class="text-xs font-black text-text-secondary uppercase tracking-[0.2em] ml-1">Token de Acceso (Access Token)</label>
-                    <textarea 
-                      v-model="form.whatsapp_access_token" 
-                      rows="3"
-                      class="input-field w-full resize-none py-4" 
-                      placeholder="EAAG..." 
-                    ></textarea>
+              <form @submit.prevent="saveProfile" class="space-y-12">
+                <!-- Credentials Group -->
+                <div class="space-y-8">
+                  <div class="flex items-center gap-3">
+                    <Shield class="w-5 h-5 text-primary" />
+                    <h4 class="text-lg font-bold">Credenciales de API</h4>
                   </div>
 
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="space-y-2">
-                      <label class="text-xs font-black text-text-secondary uppercase tracking-[0.2em] ml-1">Token de Verificación (Webhooks)</label>
+                      <label class="text-xs font-black text-text-secondary uppercase tracking-[0.2em] ml-1">Phone Number ID</label>
                       <input 
-                        v-model="form.whatsapp_verify_token" 
+                        v-model="form.whatsapp_phone_number_id" 
                         type="text" 
                         class="input-field w-full" 
-                        placeholder="ej. mi_token_seguro_123" 
+                        placeholder="ej. 102938475610293" 
                       />
+                      <p class="text-[10px] text-text-secondary ml-1">Identificador único de tu número en Meta.</p>
                     </div>
                     <div class="space-y-2">
                       <label class="text-xs font-black text-text-secondary uppercase tracking-[0.2em] ml-1">Business Account ID</label>
@@ -221,49 +220,101 @@
                         class="input-field w-full" 
                         placeholder="ej. 987654321012345" 
                       />
+                      <p class="text-[10px] text-text-secondary ml-1">ID de tu cuenta comercial de Meta.</p>
+                    </div>
+                  </div>
+
+                  <div class="space-y-2">
+                    <label class="text-xs font-black text-text-secondary uppercase tracking-[0.2em] ml-1">Access Token Permanente</label>
+                    <textarea 
+                      v-model="form.whatsapp_access_token" 
+                      rows="3"
+                      class="input-field w-full resize-none py-4 font-mono text-sm" 
+                      placeholder="EAAG..." 
+                    ></textarea>
+                    <p class="text-[10px] text-text-secondary ml-1 italic">Recomendamos usar un Token de Usuario del Sistema para que nunca expire.</p>
+                  </div>
+                </div>
+
+                <!-- Webhook Group -->
+                <div class="space-y-8">
+                  <div class="flex items-center gap-3">
+                    <Globe class="w-5 h-5 text-primary" />
+                    <h4 class="text-lg font-bold">Configuración de Recepción (Webhooks)</h4>
+                  </div>
+
+                  <div class="p-6 rounded-3xl bg-white/5 border border-white/5 space-y-4">
+                    <div class="space-y-2">
+                      <label class="text-xs font-black text-text-secondary uppercase tracking-[0.2em] ml-1">Verify Token Personalizado</label>
+                      <input 
+                        v-model="form.whatsapp_verify_token" 
+                        type="text" 
+                        class="input-field w-full bg-background" 
+                        placeholder="ej. mi_token_seguro_123" 
+                      />
+                      <p class="text-[10px] text-text-secondary ml-1">Este es el token que deberás escribir en el portal de Meta Developers.</p>
                     </div>
                   </div>
                 </div>
 
-                <div class="pt-4 flex flex-wrap gap-4">
-                  <button type="submit" :disabled="saving" class="btn-primary px-10 py-4 rounded-2xl flex items-center justify-center gap-3 min-w-[200px] shadow-xl shadow-primary/20">
+                <div class="pt-4">
+                  <button type="submit" :disabled="saving" class="btn-primary w-full md:w-auto px-12 py-5 rounded-3xl flex items-center justify-center gap-3 shadow-2xl shadow-primary/30 group">
                     <div v-if="saving" class="animate-spin w-5 h-5 border-2 border-background border-t-transparent rounded-full"></div>
-                    <Save v-else class="w-5 h-5" />
-                    <span class="font-bold">{{ saving ? 'Guardando...' : 'Guardar Configuración' }}</span>
+                    <Save v-else class="w-5 h-5 group-hover:scale-110 transition-transform" />
+                    <span class="text-lg font-bold">{{ saving ? 'Guardando...' : 'Actualizar Configuración' }}</span>
                   </button>
                 </div>
               </form>
 
-              <!-- Test Connection Section -->
-              <div class="mt-12 pt-12 border-t border-white/5 space-y-6">
-                <h4 class="text-xl font-bold flex items-center gap-3">
-                  <Sparkles class="w-5 h-5 text-primary" />
-                  Probar Conexión
-                </h4>
-                <p class="text-sm text-text-secondary">Envía un mensaje de prueba a tu teléfono para verificar que todo esté bien configurado.</p>
-                
-                <div class="flex flex-col md:flex-row gap-4">
-                  <input 
-                    v-model="testPhone" 
-                    type="text" 
-                    class="input-field flex-1" 
-                    placeholder="Número con código de país (ej. 521234567890)" 
-                  />
-                  <button 
-                    @click="testConnection" 
-                    :disabled="testing || !testPhone || !form.whatsapp_phone_number_id"
-                    class="px-8 py-4 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all font-bold flex items-center justify-center gap-3 min-w-[200px]"
-                  >
-                    <div v-if="testing" class="animate-spin w-5 h-5 border-2 border-primary border-t-transparent rounded-full"></div>
-                    <Zap v-else class="w-5 h-5 text-primary" />
-                    <span>{{ testing ? 'Probando...' : 'Enviar Prueba' }}</span>
-                  </button>
+              <!-- Diagnostic Section -->
+              <div class="mt-16 pt-16 border-t border-white/5 space-y-10">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h4 class="text-2xl font-black flex items-center gap-3">
+                      <Sparkles class="w-6 h-6 text-primary" />
+                      Centro de Diagnóstico
+                    </h4>
+                    <p class="text-sm text-text-secondary mt-2">Verifica la salud de tu conexión con WhatsApp Cloud API.</p>
+                  </div>
                 </div>
+                
+                <div class="p-8 rounded-[3rem] bg-gradient-to-br from-white/5 to-transparent border border-white/5 space-y-8">
+                  <div class="flex flex-col md:flex-row items-end gap-6">
+                    <div class="flex-1 space-y-3 w-full">
+                      <label class="text-xs font-bold text-text-secondary uppercase tracking-widest ml-1">Número de Prueba</label>
+                      <div class="relative">
+                        <Phone class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary" />
+                        <input 
+                          v-model="testPhone" 
+                          type="text" 
+                          class="input-field w-full pl-12 py-4" 
+                          placeholder="Código + Número (ej. 57300...)" 
+                        />
+                      </div>
+                    </div>
+                    <button 
+                      @click="testConnection" 
+                      :disabled="testing || !testPhone || !form.whatsapp_phone_number_id"
+                      class="w-full md:w-auto px-10 py-4 bg-white text-background rounded-2xl hover:bg-primary hover:text-background transition-all font-black flex items-center justify-center gap-3 disabled:opacity-30"
+                    >
+                      <div v-if="testing" class="animate-spin w-5 h-5 border-2 border-background border-t-transparent rounded-full"></div>
+                      <Zap v-else class="w-5 h-5" />
+                      <span>{{ testing ? 'Ejecutando...' : 'Ejecutar Test' }}</span>
+                    </button>
+                  </div>
 
-                <div v-if="testResult.message" class="p-4 rounded-2xl border flex items-center gap-3 animate-fade-in" :class="testResult.success ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'">
-                  <CheckCircle v-if="testResult.success" class="w-5 h-5" />
-                  <AlertCircle v-else class="w-5 h-5" />
-                  <span class="text-sm font-medium">{{ testResult.message }}</span>
+                  <transition name="fade">
+                    <div v-if="testResult.message" class="p-6 rounded-[2rem] border-2 flex items-start gap-4 animate-zoom-in" :class="testResult.success ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-400' : 'bg-red-500/5 border-red-500/20 text-red-400'">
+                      <div class="p-2 rounded-xl" :class="testResult.success ? 'bg-emerald-500/20' : 'bg-red-500/20'">
+                        <CheckCircle v-if="testResult.success" class="w-6 h-6" />
+                        <AlertCircle v-else class="w-6 h-6" />
+                      </div>
+                      <div class="space-y-1">
+                        <p class="font-bold text-lg">{{ testResult.success ? '¡Conexión Exitosa!' : 'Error detectado' }}</p>
+                        <p class="text-sm opacity-80 leading-relaxed">{{ testResult.message }}</p>
+                      </div>
+                    </div>
+                  </transition>
                 </div>
               </div>
             </div>
