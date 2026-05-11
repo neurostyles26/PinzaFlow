@@ -85,13 +85,19 @@
                     </button>
                   </div>
 
-                  <div class="text-center md:text-left space-y-2">
-                    <h3 class="text-3xl font-black">{{ form.full_name || 'Tu Nombre' }}</h3>
-                    <p class="text-text-secondary flex items-center justify-center md:justify-start gap-2">
-                      <Briefcase class="w-4 h-4" />
-                      {{ form.company_name || 'Nombre de tu empresa' }}
-                    </p>
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase tracking-widest">
+                  <div class="text-center md:text-left">
+                    <div class="flex flex-col">
+                      <h3 class="text-3xl font-black text-white tracking-tight">{{ form.full_name || 'Tu Nombre' }}</h3>
+                      <div class="flex items-center justify-center md:justify-start gap-2 mt-1">
+                        <span class="text-xs font-bold text-text-secondary">{{ form.company_name || 'Sin Empresa' }}</span>
+                        <span class="w-1 h-1 rounded-full bg-white/20"></span>
+                        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 border border-primary/20">
+                          <Zap class="w-3 h-3 text-primary" />
+                          <span class="text-[10px] font-black uppercase tracking-wider text-primary">{{ profile?.subscription_plan || 'Emprendedor' }}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 mt-3 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase tracking-widest">
                       <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
                       Cuenta Activa
                     </div>

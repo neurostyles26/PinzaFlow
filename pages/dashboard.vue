@@ -8,9 +8,15 @@
       
       <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-12">
         <div class="space-y-6 max-w-2xl">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary animate-bounce">
-            <Sparkles class="w-3 h-3" />
-            Asistente IA Activo
+          <div class="flex flex-wrap gap-3">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary animate-bounce">
+              <Sparkles class="w-3 h-3" />
+              Asistente IA Activo
+            </div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-black uppercase tracking-widest text-primary">
+              <Zap class="w-3 h-3" />
+              Plan {{ profile?.subscription_plan || 'Emprendedor' }}
+            </div>
           </div>
           <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]">
             Bienvenido,<br />
