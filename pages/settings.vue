@@ -62,82 +62,131 @@
       <div class="lg:col-span-2">
         <transition name="fade" mode="out-in">
           <div v-if="activeTab === 'profile'" class="space-y-8">
-            <div class="p-10 rounded-[3rem] bg-surface/50 border border-white/5 shadow-2xl relative overflow-hidden">
-              <div class="flex items-center gap-4 mb-10">
-                <div class="w-1.5 h-8 bg-primary rounded-full"></div>
-                <h3 class="text-2xl font-black">Información Personal</h3>
-              </div>
+            <!-- Profile Header Card -->
+            <div class="p-10 rounded-[3rem] bg-surface/50 border border-white/5 shadow-2xl relative overflow-hidden group">
+              <div class="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-primary/10 rounded-full blur-[80px] group-hover:bg-primary/20 transition-all duration-700"></div>
               
-              <form @submit.prevent="saveProfile" class="space-y-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div class="space-y-2">
-                    <label class="text-xs font-black text-text-secondary uppercase tracking-[0.2em] ml-1">Nombre Completo</label>
-                    <div class="relative group">
-                      <User class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary group-focus-within:text-primary transition-colors" />
-                      <input 
-                        v-model="form.full_name" 
-                        type="text" 
-                        class="w-full bg-white/5 border border-white/10 rounded-2xl pl-12 pr-4 py-4 text-white focus:ring-2 focus:ring-primary/20 focus:border-primary/50 outline-none transition-all font-medium" 
-                        placeholder="ej. Juan Pérez" 
-                      />
+              <div class="relative z-10">
+                <div class="flex flex-col md:flex-row items-center gap-8 mb-12">
+                  <!-- Avatar Section -->
+                  <div class="relative">
+                    <div class="w-32 h-32 rounded-[2.5rem] bg-gradient-to-br from-primary to-blue-600 p-1 shadow-2xl">
+                      <div class="w-full h-full rounded-[2.3rem] bg-[#0A0A0B] flex items-center justify-center overflow-hidden">
+                        <img 
+                          v-if="profile?.avatar_url" 
+                          :src="profile.avatar_url" 
+                          class="w-full h-full object-cover"
+                        />
+                        <User v-else class="w-12 h-12 text-primary" />
+                      </div>
+                    </div>
+                    <button class="absolute -bottom-2 -right-2 p-3 bg-white text-background rounded-2xl shadow-xl hover:scale-110 transition-transform">
+                      <Camera class="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <div class="text-center md:text-left space-y-2">
+                    <h3 class="text-3xl font-black">{{ form.full_name || 'Tu Nombre' }}</h3>
+                    <p class="text-text-secondary flex items-center justify-center md:justify-start gap-2">
+                      <Briefcase class="w-4 h-4" />
+                      {{ form.company_name || 'Nombre de tu empresa' }}
+                    </p>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase tracking-widest">
+                      <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                      Cuenta Activa
                     </div>
                   </div>
-                  
-                  <div class="space-y-2">
-                    <label class="text-xs font-black text-text-secondary uppercase tracking-[0.2em] ml-1">Nombre de la Empresa</label>
-                    <div class="relative group">
-                      <Briefcase class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary group-focus-within:text-primary transition-colors" />
-                      <input 
-                        v-model="form.company_name" 
-                        type="text" 
-                        class="w-full bg-white/5 border border-white/10 rounded-2xl pl-12 pr-4 py-4 text-white focus:ring-2 focus:ring-primary/20 focus:border-primary/50 outline-none transition-all font-medium" 
-                        placeholder="ej. PinFlowser Inc." 
-                      />
+                </div>
+
+                <form @submit.prevent="saveProfile" class="space-y-10">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div class="space-y-3">
+                      <label class="text-[10px] font-black text-text-secondary uppercase tracking-[0.3em] ml-1">Nombre Completo</label>
+                      <div class="relative group">
+                        <User class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary group-focus-within:text-primary transition-colors" />
+                        <input 
+                          v-model="form.full_name" 
+                          type="text" 
+                          class="w-full bg-white/5 border border-white/10 rounded-3xl pl-14 pr-6 py-5 text-white focus:ring-4 focus:ring-primary/10 focus:border-primary/40 outline-none transition-all font-semibold placeholder:text-text-secondary/30" 
+                          placeholder="Juan Pérez" 
+                        />
+                      </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                      <label class="text-[10px] font-black text-text-secondary uppercase tracking-[0.3em] ml-1">Empresa / Negocio</label>
+                      <div class="relative group">
+                        <Briefcase class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary group-focus-within:text-primary transition-colors" />
+                        <input 
+                          v-model="form.company_name" 
+                          type="text" 
+                          class="w-full bg-white/5 border border-white/10 rounded-3xl pl-14 pr-6 py-5 text-white focus:ring-4 focus:ring-primary/10 focus:border-primary/40 outline-none transition-all font-semibold placeholder:text-text-secondary/30" 
+                          placeholder="Mi Empresa S.A.S" 
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="space-y-2">
-                  <label class="text-xs font-black text-text-secondary uppercase tracking-[0.2em] ml-1">Correo Electrónico</label>
-                  <div class="relative opacity-60">
-                    <Mail class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary" />
-                    <input 
-                      :value="user?.email" 
-                      type="email" 
-                      disabled 
-                      class="w-full bg-white/5 border border-white/10 rounded-2xl pl-12 pr-4 py-4 text-white cursor-not-allowed font-medium" 
-                    />
+                  <div class="space-y-3">
+                    <label class="text-[10px] font-black text-text-secondary uppercase tracking-[0.3em] ml-1">Correo de Acceso</label>
+                    <div class="relative">
+                      <Mail class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary" />
+                      <input 
+                        :value="user?.email" 
+                        type="email" 
+                        disabled 
+                        class="w-full bg-white/[0.02] border border-white/5 rounded-3xl pl-14 pr-6 py-5 text-text-secondary/50 cursor-not-allowed font-semibold" 
+                      />
+                      <div class="absolute right-5 top-1/2 -translate-y-1/2">
+                        <Lock class="w-4 h-4 text-text-secondary/30" />
+                      </div>
+                    </div>
+                    <p class="text-[10px] text-text-secondary/50 ml-1 flex items-center gap-2">
+                      <AlertCircle class="w-3 h-3" />
+                      El correo electrónico está vinculado a tu cuenta de Supabase.
+                    </p>
                   </div>
-                  <p class="text-[10px] text-text-secondary mt-2 italic">* El correo electrónico no puede cambiarse por razones de seguridad.</p>
-                </div>
 
-                <div v-if="error" class="p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-medium flex items-center gap-3">
-                  <AlertCircle class="w-5 h-5" />
-                  {{ error }}
-                </div>
+                  <div v-if="error" class="p-6 rounded-[2rem] bg-red-500/5 border border-red-500/10 text-red-400 text-sm font-medium flex items-center gap-4 animate-shake">
+                    <div class="p-2 rounded-xl bg-red-500/20">
+                      <AlertCircle class="w-5 h-5" />
+                    </div>
+                    {{ error }}
+                  </div>
 
-                <div class="pt-4">
-                  <button type="submit" :disabled="saving" class="btn-primary px-10 py-4 rounded-2xl flex items-center justify-center gap-3 min-w-[200px] shadow-xl shadow-primary/20">
-                    <div v-if="saving" class="animate-spin w-5 h-5 border-2 border-background border-t-transparent rounded-full"></div>
-                    <Save v-else class="w-5 h-5" />
-                    <span class="font-bold">{{ saving ? 'Guardando...' : 'Guardar Cambios' }}</span>
-                  </button>
-                </div>
-              </form>
+                  <div class="pt-6">
+                    <button type="submit" :disabled="saving" class="btn-primary w-full md:w-auto px-12 py-5 rounded-3xl flex items-center justify-center gap-4 shadow-2xl shadow-primary/20 group">
+                      <div v-if="saving" class="animate-spin w-5 h-5 border-2 border-background border-t-transparent rounded-full"></div>
+                      <Save v-else class="w-5 h-5 group-hover:scale-110 transition-transform" />
+                      <span class="text-lg font-bold">{{ saving ? 'Guardando...' : 'Actualizar Perfil' }}</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
 
-            <div class="p-10 rounded-[3rem] bg-red-500/5 border border-red-500/10 shadow-2xl relative overflow-hidden group">
-              <div class="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:scale-110 transition-transform duration-700">
-                <Trash2 class="w-32 h-32 text-red-500" />
+            <!-- Enhanced Danger Zone -->
+            <div class="p-10 rounded-[3rem] bg-gradient-to-br from-red-500/5 to-transparent border border-red-500/10 shadow-2xl relative overflow-hidden group">
+              <div class="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:scale-125 group-hover:rotate-12 transition-all duration-1000">
+                <Trash2 class="w-48 h-48 text-red-500" />
               </div>
-              <div class="relative z-10">
-                <div class="flex items-center gap-4 mb-6">
-                  <div class="w-1.5 h-8 bg-red-500 rounded-full"></div>
-                  <h3 class="text-2xl font-black text-white">Zona de Peligro</h3>
+              
+              <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="space-y-3 text-center md:text-left">
+                  <div class="flex items-center justify-center md:justify-start gap-3">
+                    <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                    <h3 class="text-xl font-black text-white uppercase tracking-wider">Zona de Peligro</h3>
+                  </div>
+                  <p class="text-text-secondary max-w-md leading-relaxed">
+                    Eliminar tu cuenta es una acción irreversible. Se borrarán todos tus hilos de IA, clientes y configuraciones de WhatsApp.
+                  </p>
                 </div>
-                <p class="text-text-secondary mb-8 leading-relaxed">Una vez que elimines tu cuenta, no hay vuelta atrás. Por favor, asegúrate.</p>
-                <button @click="showDeleteConfirm = true" class="px-8 py-4 bg-red-500/10 border border-red-500/20 text-red-500 rounded-2xl hover:bg-red-500 hover:text-white transition-all font-bold">
-                  Eliminar Cuenta Permanentemente
+                
+                <button 
+                  @click="showDeleteConfirm = true" 
+                  class="px-10 py-5 bg-red-500/10 border border-red-500/20 text-red-500 rounded-3xl hover:bg-red-500 hover:text-white transition-all font-black shadow-xl shadow-red-500/5 whitespace-nowrap"
+                >
+                  Eliminar Mi Cuenta
                 </button>
               </div>
             </div>
