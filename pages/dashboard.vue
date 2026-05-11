@@ -32,6 +32,28 @@
         </div>
         
         <div class="lg:w-80 space-y-4">
+          <div 
+            class="p-6 rounded-[2rem] bg-white/5 border border-white/10 backdrop-blur-md relative overflow-hidden group/card transition-all"
+            :class="isWhatsAppConfigured ? 'hover:border-emerald-500/30' : 'hover:border-red-500/30'"
+          >
+            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover/card:scale-125 transition-transform duration-700">
+              <MessageSquare class="w-20 h-20" :class="isWhatsAppConfigured ? 'text-emerald-500' : 'text-red-500'" />
+            </div>
+            <div class="flex items-center gap-2 mb-1">
+              <div class="w-2 h-2 rounded-full animate-pulse" :class="isWhatsAppConfigured ? 'bg-emerald-500' : 'bg-red-500'"></div>
+              <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest">WhatsApp Status</p>
+            </div>
+            <h4 class="text-xl font-black text-white">{{ isWhatsAppConfigured ? 'Connected' : 'Disconnected' }}</h4>
+            <p class="text-[10px] text-text-secondary mt-1">{{ isWhatsAppConfigured ? 'Ready to send messages' : 'Setup required in settings' }}</p>
+            <button 
+              v-if="!isWhatsAppConfigured" 
+              @click="navigateTo('/settings')" 
+              class="mt-4 text-[10px] font-black text-primary hover:underline uppercase tracking-widest"
+            >
+              Configure Now
+            </button>
+          </div>
+
           <div class="p-6 rounded-[2rem] bg-white/5 border border-white/10 backdrop-blur-md relative overflow-hidden group/card">
             <div class="absolute top-0 right-0 p-4 opacity-10 group-hover/card:scale-125 transition-transform duration-700">
               <Zap class="w-20 h-20 text-primary" />
@@ -206,8 +228,14 @@ const {
   clients, 
   fetchClients, 
   conversations, 
-  fetchConversations 
+  fetchConversations,
+  profile,
+  fetchProfile
 } = usePinza()
+
+const isWhatsAppConfigured = computed(() => {
+  return !!(profile.value?.whatsapp_phone_number_id && profile.value?.whatsapp_access_token)
+})
 
 const statsLoading = ref(true)
 
@@ -254,7 +282,8 @@ onMounted(async () => {
   await Promise.all([
     fetchDashboardStats(),
     fetchClients(),
-    fetchConversations()
+    fetchConversations(),
+    fetchProfile()
   ])
   statsLoading.value = false
 })

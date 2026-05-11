@@ -232,6 +232,26 @@ export const usePinza = () => {
     if (!user.value) return null
     error.value = null
 
+    // 1. Find conversation to get client phone
+    const conversation = conversations.value.find(c => c.id === conversationId)
+    const clientPhone = conversation?.client?.phone
+
+    // 2. If sender is user, try to send via WhatsApp first
+    if (sender === 'user' && clientPhone) {
+      try {
+        await $fetch('/api/whatsapp/send', {
+          method: 'POST',
+          body: {
+            phone: clientPhone,
+            message: content
+          }
+        })
+      } catch (err: any) {
+        error.value = err.statusMessage || 'Error al enviar por WhatsApp. ¿Está configurada tu cuenta?'
+        // We continue saving to DB anyway so it shows in UI, but user sees error
+      }
+    }
+
     const { data, error: err } = await supabase
       .from('messages')
       .insert({

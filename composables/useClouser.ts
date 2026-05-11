@@ -33,10 +33,22 @@ export const useClouser = () => {
     leadTemperature.value = temp
   }
 
-  const generateReply = async (context: string) => {
-    // Placeholder for actual API call
-    console.log("Generating reply for context:", context)
-    return "Esta es una respuesta sugerida por IA basada en tu contexto."
+  const generateReply = async (messages: any[]) => {
+    try {
+      const { data } = await useFetch('/api/ai-suggest', {
+        method: 'POST',
+        body: {
+          messages: messages.slice(-6).map(m => ({
+            sender: m.sender,
+            content: m.content
+          }))
+        }
+      })
+      return data.value?.suggestion || 'No se pudo generar una sugerencia.'
+    } catch (err) {
+      console.error("Error generating reply:", err)
+      return "Hubo un problema al conectar con la IA."
+    }
   }
 
   return {

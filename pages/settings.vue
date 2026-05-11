@@ -143,6 +143,81 @@
             </div>
           </div>
 
+          <div v-else-if="activeTab === 'whatsapp'" class="space-y-8">
+            <div class="p-10 rounded-[3rem] bg-surface/50 border border-white/5 shadow-2xl relative overflow-hidden">
+              <div class="flex items-center gap-4 mb-10">
+                <div class="w-1.5 h-8 bg-primary rounded-full"></div>
+                <h3 class="text-2xl font-black">WhatsApp Cloud API</h3>
+              </div>
+              
+              <div class="mb-8 p-6 rounded-2xl bg-primary/5 border border-primary/10">
+                <p class="text-sm text-primary font-bold mb-2 flex items-center gap-2">
+                  <Zap class="w-4 h-4" />
+                  Quick Configuration Guide
+                </p>
+                <ul class="text-xs space-y-2 text-text-secondary list-disc ml-4">
+                  <li>Create an app in the <a href="https://developers.facebook.com/" target="_blank" class="text-primary hover:underline font-bold">Meta for Developers</a> portal.</li>
+                  <li>Add the "WhatsApp" product to your app.</li>
+                  <li>Copy your <strong>Phone Number ID</strong> and <strong>Access Token</strong> below.</li>
+                  <li>Configure the Webhook using your <strong>Verify Token</strong>.</li>
+                </ul>
+              </div>
+
+              <form @submit.prevent="saveProfile" class="space-y-8">
+                <div class="space-y-6">
+                  <div class="space-y-2">
+                    <label class="text-xs font-black text-text-secondary uppercase tracking-[0.2em] ml-1">Phone Number ID</label>
+                    <input 
+                      v-model="form.whatsapp_phone_number_id" 
+                      type="text" 
+                      class="input-field w-full" 
+                      placeholder="e.g. 102938475610293" 
+                    />
+                  </div>
+
+                  <div class="space-y-2">
+                    <label class="text-xs font-black text-text-secondary uppercase tracking-[0.2em] ml-1">Temporary/Permanent Access Token</label>
+                    <textarea 
+                      v-model="form.whatsapp_access_token" 
+                      rows="3"
+                      class="input-field w-full resize-none py-4" 
+                      placeholder="EAAG..." 
+                    ></textarea>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-2">
+                      <label class="text-xs font-black text-text-secondary uppercase tracking-[0.2em] ml-1">Verify Token (Webhooks)</label>
+                      <input 
+                        v-model="form.whatsapp_verify_token" 
+                        type="text" 
+                        class="input-field w-full" 
+                        placeholder="e.g. my_secure_token_123" 
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label class="text-xs font-black text-text-secondary uppercase tracking-[0.2em] ml-1">Business Account ID</label>
+                      <input 
+                        v-model="form.whatsapp_business_account_id" 
+                        type="text" 
+                        class="input-field w-full" 
+                        placeholder="e.g. 987654321012345" 
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-4">
+                  <button type="submit" :disabled="saving" class="btn-primary px-10 py-4 rounded-2xl flex items-center justify-center gap-3 min-w-[200px] shadow-xl shadow-primary/20">
+                    <div v-if="saving" class="animate-spin w-5 h-5 border-2 border-background border-t-transparent rounded-full"></div>
+                    <Save v-else class="w-5 h-5" />
+                    <span class="font-bold">{{ saving ? 'Saving Connection...' : 'Save WhatsApp Config' }}</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
           <div v-else-if="activeTab === 'notifications'" class="space-y-8">
             <div class="p-10 rounded-[3rem] bg-surface/50 border border-white/5 shadow-2xl">
               <div class="flex items-center gap-4 mb-10">
@@ -243,13 +318,18 @@ const activeTab = ref('profile')
 
 const tabs = [
   { id: 'profile', label: 'Profile', icon: User },
+  { id: 'whatsapp', label: 'WhatsApp', icon: MessageSquare },
   { id: 'notifications', label: 'Notifications', icon: Bell },
   { id: 'security', label: 'Security', icon: Shield },
 ]
 
 const form = reactive({
   full_name: '',
-  company_name: ''
+  company_name: '',
+  whatsapp_phone_number_id: '',
+  whatsapp_access_token: '',
+  whatsapp_verify_token: '',
+  whatsapp_business_account_id: ''
 })
 
 const profileInitial = computed(() => {
@@ -274,7 +354,11 @@ const saveProfile = async () => {
   
   await updateProfile({
     full_name: form.full_name,
-    company_name: form.company_name
+    company_name: form.company_name,
+    whatsapp_phone_number_id: form.whatsapp_phone_number_id,
+    whatsapp_access_token: form.whatsapp_access_token,
+    whatsapp_verify_token: form.whatsapp_verify_token,
+    whatsapp_business_account_id: form.whatsapp_business_account_id
   })
 
   // Also update user metadata in auth
@@ -301,6 +385,10 @@ onMounted(async () => {
   if (profile.value) {
     form.full_name = profile.value.full_name || user.value?.user_metadata?.full_name || ''
     form.company_name = profile.value.company_name || ''
+    form.whatsapp_phone_number_id = profile.value.whatsapp_phone_number_id || ''
+    form.whatsapp_access_token = profile.value.whatsapp_access_token || ''
+    form.whatsapp_verify_token = profile.value.whatsapp_verify_token || ''
+    form.whatsapp_business_account_id = profile.value.whatsapp_business_account_id || ''
   } else {
     form.full_name = user.value?.user_metadata?.full_name || ''
   }

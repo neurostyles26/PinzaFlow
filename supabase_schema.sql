@@ -6,6 +6,10 @@ CREATE TABLE profiles (
   full_name TEXT,
   avatar_url TEXT,
   company_name TEXT,
+  whatsapp_phone_number_id TEXT,
+  whatsapp_access_token TEXT,
+  whatsapp_verify_token TEXT,
+  whatsapp_business_account_id TEXT,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
 

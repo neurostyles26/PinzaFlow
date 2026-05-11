@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
     openaiApiKey: process.env.OPENAI_API_KEY || '',
+    googleAiApiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY || '',
     public: {
       supabaseUrl: process.env.SUPABASE_URL || '',
       supabaseKey: process.env.SUPABASE_KEY || ''

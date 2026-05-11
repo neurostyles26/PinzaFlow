@@ -321,25 +321,14 @@ const startNewConversation = async (client) => {
   }
 }
 
+const { generateReply } = useClouser()
+
 const getAiSuggestion = async () => {
   if (!selectedChat.value || aiLoading.value) return
   aiLoading.value = true
   aiSuggestion.value = ''
   
-  try {
-    const { data } = await useFetch('/api/ai-suggest', {
-      method: 'POST',
-      body: {
-        messages: messages.value.slice(-6).map(m => ({
-          sender: m.sender,
-          content: m.content
-        }))
-      }
-    })
-    aiSuggestion.value = data.value?.suggestion || 'Could not generate suggestion.'
-  } catch {
-    aiSuggestion.value = 'AI service unavailable. Check your OpenAI API key.'
-  }
+  aiSuggestion.value = await generateReply(messages.value)
   aiLoading.value = false
 }
 
