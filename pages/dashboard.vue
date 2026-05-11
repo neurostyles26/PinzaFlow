@@ -1,33 +1,47 @@
 <template>
-  <div class="space-y-10 pb-12">
+  <div class="space-y-12 pb-16">
     <!-- Header / Hero Section -->
-    <div class="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-surface to-background border border-white/5 p-8 md:p-12 shadow-2xl">
-      <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-primary/10 rounded-full blur-[100px] animate-pulse"></div>
-      <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-72 h-72 bg-blue-500/10 rounded-full blur-[80px]"></div>
+    <div class="relative overflow-hidden rounded-[3rem] bg-[#0A0A0B] border border-white/5 p-10 md:p-16 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group">
+      <div class="absolute top-0 right-0 -mt-32 -mr-32 w-[30rem] h-[30rem] bg-primary/20 rounded-full blur-[120px] animate-pulse duration-[5s]"></div>
+      <div class="absolute bottom-0 left-0 -mb-32 -ml-32 w-[25rem] h-[25rem] bg-blue-600/10 rounded-full blur-[100px]"></div>
+      <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
       
-      <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
-        <div class="space-y-2">
-          <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight">
-            Good morning, <span class="text-gradient">{{ userFirstName }}</span>!
+      <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-12">
+        <div class="space-y-6 max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-primary animate-bounce">
+            <Sparkles class="w-3 h-3" />
+            AI Assistant Active
+          </div>
+          <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]">
+            Welcome back,<br />
+            <span class="text-gradient">{{ userFirstName }}</span>
           </h1>
-          <p class="text-text-secondary text-lg max-w-xl">
-            Your AI Sales Clouser has been busy. You have <span class="text-primary font-semibold">{{ dashboardStats.activeConversations }} active conversations</span> waiting for your input.
+          <p class="text-text-secondary text-lg md:text-xl leading-relaxed">
+            Your PinFlowser engine is running at full speed. You have <span class="text-white font-bold">{{ dashboardStats.activeConversations }} active threads</span> being handled by AI today.
           </p>
+          <div class="flex flex-wrap gap-4 pt-4">
+            <button @click="navigateTo('/conversations')" class="btn-primary px-8 py-4 rounded-2xl flex items-center gap-3 shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all">
+              <MessageSquare class="w-5 h-5" />
+              <span>Go to Chats</span>
+            </button>
+            <button @click="exportReport" class="px-8 py-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all font-bold flex items-center gap-3">
+              <Download class="w-5 h-5 text-text-secondary" />
+              <span>Report</span>
+            </button>
+          </div>
         </div>
         
-        <div class="flex flex-wrap gap-4">
-          <button @click="exportReport" class="btn-secondary group flex items-center gap-3">
-            <div class="p-2 bg-white/5 rounded-lg group-hover:bg-white/10 transition-colors">
-              <Download class="w-5 h-5 text-text-secondary" />
+        <div class="lg:w-80 space-y-4">
+          <div class="p-6 rounded-[2rem] bg-white/5 border border-white/10 backdrop-blur-md relative overflow-hidden group/card">
+            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover/card:scale-125 transition-transform duration-700">
+              <Zap class="w-20 h-20 text-primary" />
             </div>
-            <span>Export Report</span>
-          </button>
-          <button @click="navigateTo('/clients')" class="btn-primary group flex items-center gap-3">
-            <div class="p-2 bg-background/20 rounded-lg group-hover:bg-background/30 transition-colors">
-              <Plus class="w-5 h-5" />
+            <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-1">Weekly Efficiency</p>
+            <h4 class="text-3xl font-black text-white">+24.5%</h4>
+            <div class="mt-4 h-1.5 bg-white/5 rounded-full overflow-hidden">
+              <div class="h-full bg-primary rounded-full w-3/4 animate-shimmer"></div>
             </div>
-            <span>New Client</span>
-          </button>
+          </div>
         </div>
       </div>
     </div>
@@ -37,29 +51,28 @@
       <div 
         v-for="(stat, index) in computedStats" 
         :key="stat.label" 
-        class="card group hover:-translate-y-1 transition-all duration-500 overflow-hidden"
-        :style="{ '--delay': index * 100 + 'ms' }"
+        class="relative group p-6 rounded-[2rem] bg-surface/50 border border-white/5 hover:border-primary/20 transition-all duration-500 overflow-hidden"
       >
-        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-          <component :is="stat.icon" class="w-16 h-16" />
+        <div class="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.08] transition-all duration-700 group-hover:scale-110">
+          <component :is="stat.icon" class="w-32 h-32" />
         </div>
         
         <div class="relative z-10">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="p-2.5 rounded-2xl" :style="{ color: stat.hex, backgroundColor: stat.hex + '1a' }">
-              <component :is="stat.icon" class="w-6 h-6" />
+          <div class="flex items-center gap-3 mb-6">
+            <div class="p-3 rounded-2xl" :style="{ color: stat.hex, backgroundColor: stat.hex + '15', border: '1px solid ' + stat.hex + '20' }">
+              <component :is="stat.icon" class="w-5 h-5" />
             </div>
-            <p class="text-sm font-semibold text-text-secondary uppercase tracking-wider">{{ stat.label }}</p>
+            <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest">{{ stat.label }}</p>
           </div>
           
           <div class="flex items-end justify-between">
-            <h3 class="text-4xl font-black">
+            <h3 class="text-4xl font-black tracking-tight text-white">
               <span v-if="statsLoading" class="inline-block w-20 h-10 bg-white/5 rounded-lg animate-pulse"></span>
               <span v-else>{{ stat.value }}</span>
             </h3>
-            <div class="flex items-center gap-1.5 text-[10px] font-bold px-2 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
-              <TrendingUp class="w-3 h-3" />
-              <span>LIVE</span>
+            <div class="flex items-center gap-1 text-[10px] font-bold text-emerald-400 mb-1">
+              <ArrowUpRight class="w-3 h-3" />
+              <span>+{{ Math.floor(Math.random() * 15) }}%</span>
             </div>
           </div>
         </div>
@@ -67,17 +80,17 @@
     </div>
 
     <!-- Main Content Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
       <!-- Recent Conversations -->
-      <div class="lg:col-span-2 space-y-6">
+      <div class="lg:col-span-2 space-y-8">
         <div class="flex items-center justify-between px-2">
-          <h3 class="text-xl font-bold flex items-center gap-3">
-            <MessageSquare class="w-6 h-6 text-primary" />
+          <h3 class="text-2xl font-black flex items-center gap-4">
+            <div class="w-1.5 h-8 bg-primary rounded-full"></div>
             Recent Conversations
           </h3>
-          <NuxtLink to="/conversations" class="text-sm font-semibold text-primary hover:text-primary-accent transition-colors flex items-center gap-1">
-            View all
-            <ArrowRight class="w-4 h-4" />
+          <NuxtLink to="/conversations" class="group flex items-center gap-2 text-sm font-bold text-text-secondary hover:text-primary transition-all">
+            Manage Threads
+            <ArrowRight class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </NuxtLink>
         </div>
 
@@ -86,79 +99,81 @@
             v-for="conv in recentConversations" 
             :key="conv.id" 
             @click="navigateTo('/conversations')"
-            class="group p-5 bg-surface/30 hover:bg-surface/60 border border-white/5 hover:border-white/20 rounded-[1.5rem] cursor-pointer transition-all duration-300 flex items-center gap-5 shadow-sm hover:shadow-xl"
+            class="group p-6 bg-surface/40 hover:bg-surface/80 border border-white/5 hover:border-white/10 rounded-[2rem] cursor-pointer transition-all duration-300 flex items-center gap-6 shadow-sm hover:shadow-2xl hover:-translate-y-1"
           >
             <div class="relative">
-              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center font-bold text-lg border border-white/10 group-hover:scale-110 transition-transform duration-300">
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center font-bold text-xl border border-white/10 group-hover:border-primary/30 transition-all duration-500">
                 {{ conv.client?.name?.charAt(0) || '?' }}
               </div>
-              <div v-if="conv.unread_count > 0" class="absolute -top-1 -right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center text-[10px] font-black text-background border-2 border-background ring-2 ring-primary/20">
+              <div v-if="conv.unread_count > 0" class="absolute -top-2 -right-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center text-[10px] font-black text-background border-4 border-surface ring-4 ring-primary/10">
                 {{ conv.unread_count }}
               </div>
             </div>
             
             <div class="flex-1 min-w-0">
-              <div class="flex items-center justify-between mb-1">
-                <h4 class="text-base font-bold truncate group-hover:text-primary transition-colors">{{ conv.client?.name || 'Unknown' }}</h4>
-                <span class="text-xs font-medium text-text-secondary bg-white/5 px-2 py-1 rounded-md">{{ formatTime(conv.updated_at) }}</span>
+              <div class="flex items-center justify-between mb-2">
+                <h4 class="text-lg font-bold truncate group-hover:text-primary transition-colors">{{ conv.client?.name || 'Unknown' }}</h4>
+                <span class="text-[10px] font-bold text-text-secondary bg-white/5 px-2 py-1 rounded-lg uppercase tracking-widest">{{ formatTime(conv.updated_at) }}</span>
               </div>
-              <p class="text-sm text-text-secondary truncate leading-relaxed">{{ conv.last_message || 'Waiting for the first message...' }}</p>
+              <p class="text-sm text-text-secondary truncate leading-relaxed">{{ conv.last_message || 'No messages yet' }}</p>
             </div>
             
-            <div class="p-2 rounded-xl bg-white/5 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0">
+            <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all -translate-x-4 group-hover:translate-x-0 border border-white/10">
               <ChevronRight class="w-5 h-5 text-primary" />
             </div>
           </div>
 
-          <div v-if="recentConversations.length === 0" class="p-16 text-center card border-dashed border-white/10 bg-transparent shadow-none">
-            <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
-              <MessageSquare class="w-10 h-10 text-text-secondary opacity-30" />
+          <div v-if="recentConversations.length === 0" class="p-20 text-center rounded-[3rem] border border-dashed border-white/10 bg-white/[0.02]">
+            <div class="w-24 h-24 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-8">
+              <MessageSquare class="w-10 h-10 text-text-secondary/20" />
             </div>
-            <h4 class="text-lg font-bold mb-2">No active conversations yet</h4>
-            <p class="text-text-secondary text-sm max-w-xs mx-auto mb-8">Ready to grow? Add your first client and start a conversation with AI assistance.</p>
-            <button @click="navigateTo('/clients')" class="btn-primary">Add First Client</button>
+            <h4 class="text-xl font-bold mb-3">Silent inbox</h4>
+            <p class="text-text-secondary text-sm max-w-xs mx-auto mb-10">Start growing your business by initiating your first AI-assisted conversation.</p>
+            <button @click="navigateTo('/clients')" class="btn-primary px-10">New Client</button>
           </div>
         </div>
       </div>
 
-      <!-- Sidebar / AI Insights -->
-      <div class="space-y-8">
-        <!-- AI Promotion Card -->
-        <div class="card bg-gradient-to-br from-primary/20 via-surface/40 to-surface/40 border-primary/20 overflow-hidden group">
-          <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-all duration-700"></div>
-          <Zap class="w-10 h-10 text-primary mb-6 animate-float" />
-          <h3 class="text-2xl font-black mb-3 leading-tight">Elevate with AI Automations</h3>
-          <p class="text-sm text-text-secondary leading-relaxed mb-8">Let PinFlowser handle the routine while you focus on closing big deals. 24/7 smart responses ready to go.</p>
-          <button @click="navigateTo('/automations')" class="btn-primary w-full group">
-            Configure AI
-            <ArrowRight class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-          </button>
+      <!-- Sidebar / Insights -->
+      <div class="space-y-10">
+        <!-- AI Card -->
+        <div class="relative p-8 rounded-[2.5rem] bg-gradient-to-br from-primary/30 via-primary/5 to-surface/50 border border-primary/20 overflow-hidden group shadow-2xl shadow-primary/10">
+          <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-primary/20 rounded-full blur-[80px] group-hover:bg-primary/30 transition-all duration-1000"></div>
+          <div class="relative z-10">
+            <div class="w-14 h-14 bg-primary/20 rounded-2xl flex items-center justify-center mb-8 border border-primary/30">
+              <Bot class="w-8 h-8 text-primary animate-pulse" />
+            </div>
+            <h3 class="text-2xl font-black mb-4 leading-tight">AI Insights</h3>
+            <p class="text-sm text-text-secondary leading-relaxed mb-10">Your response speed is 40% faster this week thanks to AI automation.</p>
+            <button @click="navigateTo('/clouser')" class="w-full py-4 rounded-2xl bg-primary text-background font-bold hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-primary/20">
+              Optimize Clouser
+            </button>
+          </div>
         </div>
 
-        <!-- Recent Activity / Clients -->
-        <div class="space-y-4">
-          <h3 class="text-lg font-bold px-2 flex items-center gap-2">
+        <!-- Recent Activity -->
+        <div class="space-y-6">
+          <h3 class="text-lg font-bold px-2 flex items-center gap-3">
             <Users class="w-5 h-5 text-blue-400" />
-            Recent Clients
+            Active Leads
           </h3>
-          <div class="card p-5 space-y-4">
-            <div v-if="recentClients.length === 0" class="text-sm text-text-secondary text-center py-8 bg-white/5 rounded-2xl border border-dashed border-white/10">
-              No clients found.
-            </div>
-            <div v-else class="space-y-4">
-              <div v-for="client in recentClients" :key="client.id" class="flex items-center gap-4 group cursor-pointer">
-                <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-sm font-bold border border-white/5 group-hover:bg-primary/10 group-hover:border-primary/20 transition-all">
-                  {{ client.name.charAt(0) }}
-                </div>
-                <div class="flex-1 min-w-0">
-                  <p class="text-sm font-bold truncate group-hover:text-primary transition-colors">{{ client.name }}</p>
-                  <p class="text-[10px] text-text-secondary uppercase tracking-widest font-semibold">{{ client.phone }}</p>
-                </div>
-                <div class="w-2 h-2 rounded-full bg-primary/40 group-hover:bg-primary transition-colors"></div>
+          <div class="p-4 rounded-[2.5rem] bg-surface/30 border border-white/5 space-y-2">
+            <div v-for="client in recentClients" :key="client.id" class="flex items-center gap-4 p-3 rounded-2xl hover:bg-white/5 transition-all group cursor-pointer border border-transparent hover:border-white/5">
+              <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-sm font-black border border-white/5 group-hover:bg-primary/20 group-hover:border-primary/30 transition-all">
+                {{ client.name.charAt(0) }}
               </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-bold truncate group-hover:text-primary transition-colors">{{ client.name }}</p>
+                <div class="flex items-center gap-2 mt-0.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <p class="text-[9px] text-text-secondary uppercase tracking-[0.2em] font-black">Active Now</p>
+                </div>
+              </div>
+              <ChevronRight class="w-4 h-4 text-text-secondary/30 group-hover:text-primary transition-all group-hover:translate-x-1" />
             </div>
-            <button @click="navigateTo('/clients')" class="w-full py-3 text-xs font-bold text-text-secondary hover:text-text-primary bg-white/5 hover:bg-white/10 rounded-xl transition-all border border-white/5">
-              VIEW ALL CLIENTS
+            
+            <button @click="navigateTo('/clients')" class="w-full py-4 mt-2 text-[10px] font-black text-text-secondary hover:text-white transition-all uppercase tracking-widest border-t border-white/5">
+              View All Database
             </button>
           </div>
         </div>
@@ -168,6 +183,7 @@
 </template>
 
 <script setup>
+import { ref, computed, onMounted } from 'vue'
 import { 
   MessageSquare, 
   Users, 
@@ -175,10 +191,12 @@ import {
   Download, 
   Plus, 
   Zap,
-  MousePointer2,
   Clock,
   ArrowRight,
-  ChevronRight
+  ChevronRight,
+  Sparkles,
+  Bot,
+  ArrowUpRight
 } from 'lucide-vue-next'
 
 const user = useSupabaseUser()
@@ -199,10 +217,10 @@ const userFirstName = computed(() => {
 })
 
 const computedStats = computed(() => [
-  { label: 'Leads Closed', value: '142', icon: TrendingUp, hex: '#22C55E' },
-  { label: 'AI Response Rate', value: '98%', icon: Zap, hex: '#3B82F6' },
-  { label: 'Sales Conversion', value: '15.4%', icon: Users, hex: '#F59E0B' },
-  { label: 'Active Automations', value: '12', icon: Clock, hex: '#8B5CF6' },
+  { label: 'Deals Closed', value: '142', icon: TrendingUp, hex: '#10B981' },
+  { label: 'AI Success Rate', value: '98%', icon: Sparkles, hex: '#3B82F6' },
+  { label: 'Conversion', value: '15.4%', icon: Users, hex: '#F59E0B' },
+  { label: 'Automations', value: '12', icon: Bot, hex: '#8B5CF6' },
 ])
 
 const recentConversations = computed(() => conversations.value.slice(0, 5))
@@ -214,12 +232,11 @@ const formatTime = (dateStr) => {
   const now = new Date()
   const diff = now.getTime() - date.getTime()
   const mins = Math.floor(diff / 60000)
-  if (mins < 1) return 'Just now'
-  if (mins < 60) return `${mins}m ago`
+  if (mins < 1) return 'Now'
+  if (mins < 60) return `${mins}m`
   const hours = Math.floor(mins / 60)
-  if (hours < 24) return `${hours}h ago`
-  const days = Math.floor(hours / 24)
-  return `${days}d ago`
+  if (hours < 24) return `${hours}h`
+  return `${Math.floor(hours / 24)}d`
 }
 
 const exportReport = () => {

@@ -72,3 +72,17 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();
+
+-- 5. Notifications
+CREATE TABLE notifications (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID REFERENCES auth.users ON DELETE CASCADE NOT NULL,
+  title TEXT NOT NULL,
+  message TEXT NOT NULL,
+  type TEXT CHECK (type IN ('info', 'success', 'warning', 'error')) DEFAULT 'info',
+  is_read BOOLEAN DEFAULT false,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+ALTER TABLE notifications ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Users can manage their own notifications" ON notifications FOR ALL USING (auth.uid() = user_id);
