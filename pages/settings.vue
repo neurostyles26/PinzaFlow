@@ -569,6 +569,21 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+.input-field {
+  @apply bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white outline-none transition-all font-semibold;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: white !important;
+}
+
+.input-field:focus {
+  @apply ring-4 ring-primary/10 border-primary/40;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.input-field::placeholder {
+  @apply text-text-secondary/30;
+}
+
 .fade-enter-active,
 .fade-slide-leave-active {
   transition: all 0.3s ease;

@@ -36,6 +36,10 @@
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400;
   }
+
+  .input-field {
+    @apply bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:ring-4 focus:ring-primary/10 focus:border-primary/40 outline-none transition-all font-semibold placeholder:text-text-secondary/30;
+  }
 }
 
 /* Custom Scrollbar */
