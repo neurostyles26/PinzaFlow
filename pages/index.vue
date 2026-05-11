@@ -46,9 +46,26 @@
       </div>
 
       <!-- Dashboard Preview -->
-      <div class="max-w-6xl mx-auto mt-20 relative">
-        <div class="aspect-video bg-surface rounded-2xl border border-white/10 shadow-2xl overflow-hidden relative group">
-          <img src="/Portada-software.png" alt="PinFlowser Dashboard Preview" class="w-full h-full object-cover" />
+      <div class="max-w-6xl mx-auto mt-24 relative perspective-1000">
+        <!-- Decorative Glows -->
+        <div class="absolute -top-20 -left-20 w-64 h-64 bg-primary/20 rounded-full blur-[100px] animate-pulse"></div>
+        <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-blue-500/20 rounded-full blur-[100px]"></div>
+
+        <div class="relative group">
+          <!-- Glass effect behind the image -->
+          <div class="absolute inset-0 bg-primary/5 rounded-[2.5rem] -rotate-2 group-hover:rotate-0 transition-transform duration-700"></div>
+          
+          <div class="relative bg-surface/50 backdrop-blur-sm rounded-[2.5rem] border border-white/10 shadow-[0_0_100px_-20px_rgba(34,197,94,0.3)] overflow-hidden transition-all duration-700 group-hover:scale-[1.02] group-hover:-translate-y-2">
+            <!-- Actual Image -->
+            <img 
+              src="/Portada-software.png" 
+              alt="PinFlowser Dashboard Preview" 
+              class="w-full h-auto object-contain block"
+            />
+            
+            <!-- Shimmer effect -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+          </div>
         </div>
       </div>
     </section>

@@ -64,6 +64,10 @@
   box-shadow: 0 0 40px -10px theme('colors.primary.DEFAULT');
 }
 
+.perspective-1000 {
+  perspective: 1000px;
+}
+
 /* Transitions */
 .page-enter-active,
 .page-leave-active {
