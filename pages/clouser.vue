@@ -4,8 +4,8 @@
     <div class="w-80 flex-shrink-0 flex flex-col glass rounded-2xl overflow-hidden border border-white/5">
       <div class="p-4 border-b border-white/5 space-y-3">
         <div class="flex items-center justify-between">
-          <h3 class="font-bold text-sm">Conversations</h3>
-          <button @click="showNewConvModal = true" class="p-1.5 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-all" title="New conversation">
+          <h3 class="font-bold text-sm">Conversaciones</h3>
+          <button @click="showNewConvModal = true" class="p-1.5 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-all" title="Nueva conversación">
             <Plus class="w-4 h-4" />
           </button>
         </div>
@@ -14,7 +14,7 @@
           <input 
             v-model="chatSearch"
             type="text" 
-            placeholder="Search chats..." 
+            placeholder="Buscar chats..." 
             class="w-full bg-background border border-white/10 rounded-xl pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary outline-none"
           />
         </div>
@@ -39,10 +39,10 @@
           </div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center justify-between">
-              <h4 class="text-sm font-semibold truncate">{{ conv.client?.name || 'Unknown' }}</h4>
+              <h4 class="text-sm font-semibold truncate">{{ conv.client?.name || 'Desconocido' }}</h4>
               <span class="text-[10px] text-text-secondary uppercase flex-shrink-0">{{ formatTime(conv.updated_at) }}</span>
             </div>
-            <p class="text-xs text-text-secondary truncate mt-1">{{ conv.last_message || 'No messages' }}</p>
+            <p class="text-xs text-text-secondary truncate mt-1">{{ conv.last_message || 'Sin mensajes' }}</p>
           </div>
           <div v-if="conv.unread_count > 0" class="absolute right-4 bottom-4 w-5 h-5 bg-primary rounded-full flex items-center justify-center text-[10px] font-bold text-background flex-shrink-0">
             {{ conv.unread_count }}
@@ -50,7 +50,7 @@
         </div>
 
         <div v-if="filteredConversations.length === 0" class="p-8 text-center text-text-secondary text-sm">
-          No conversations found.
+          No se encontraron conversaciones.
         </div>
       </div>
     </div>
@@ -68,15 +68,15 @@
             <div class="flex items-center gap-1.5 mt-0.5">
               <span class="w-1.5 h-1.5 bg-primary rounded-full" :class="{ 'animate-pulse': selectedChat.status === 'active' }"></span>
               <span class="text-[10px] uppercase font-bold tracking-wider" :class="selectedChat.status === 'active' ? 'text-primary' : 'text-text-secondary'">
-                {{ selectedChat.status === 'active' ? 'Active' : 'Archived' }}
+                {{ selectedChat.status === 'active' ? 'Activo' : 'Archivado' }}
               </span>
             </div>
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <button @click="getAiSuggestion" :disabled="aiLoading" class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-all flex items-center gap-1.5" title="AI Suggestion">
+          <button @click="getAiSuggestion" :disabled="aiLoading" class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-all flex items-center gap-1.5" title="Sugerencia IA">
             <Sparkles class="w-4 h-4" />
-            <span class="text-xs font-medium hidden sm:inline">AI</span>
+            <span class="text-xs font-medium hidden sm:inline">IA</span>
           </button>
           <button class="p-2 text-text-secondary hover:text-white hover:bg-white/5 rounded-lg transition-all">
             <Phone class="w-4 h-4" />
@@ -91,11 +91,11 @@
       <div v-if="aiSuggestion" class="px-4 py-3 bg-primary/5 border-b border-primary/10 flex items-start gap-3">
         <Sparkles class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
         <div class="flex-1 min-w-0">
-          <p class="text-xs text-primary font-bold mb-1">AI Suggestion</p>
+          <p class="text-xs text-primary font-bold mb-1">Sugerencia de IA</p>
           <p class="text-sm">{{ aiSuggestion }}</p>
         </div>
         <div class="flex gap-2 flex-shrink-0">
-          <button @click="useAiSuggestion" class="px-3 py-1 bg-primary text-background rounded-lg text-xs font-bold hover:bg-primary-accent transition-all">Use</button>
+          <button @click="useAiSuggestion" class="px-3 py-1 bg-primary text-background rounded-lg text-xs font-bold hover:bg-primary-accent transition-all">Usar</button>
           <button @click="aiSuggestion = ''" class="p-1 text-text-secondary hover:text-white transition-all">
             <X class="w-4 h-4" />
           </button>
@@ -110,7 +110,7 @@
         <template v-else>
           <div v-if="messages.length === 0" class="flex flex-col items-center justify-center h-full text-text-secondary">
             <MessageSquare class="w-10 h-10 mb-3 opacity-30" />
-            <p>No messages yet. Start the conversation!</p>
+            <p>Sin mensajes aún. ¡Inicia la conversación!</p>
           </div>
           <div 
             v-for="msg in messages" 
@@ -141,7 +141,7 @@
           <input 
             v-model="newMessage"
             type="text" 
-            placeholder="Type a message..." 
+            placeholder="Escribe un mensaje..." 
             class="flex-1 bg-background border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:ring-1 focus:ring-primary outline-none transition-all"
             @keydown.enter.prevent="handleSend"
           />
@@ -166,9 +166,9 @@
       <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6">
         <MessageSquare class="w-10 h-10 text-white/20" />
       </div>
-      <h3 class="text-xl font-bold">Select a conversation</h3>
-      <p class="text-text-secondary mt-2">Choose a chat from the left to start messaging.</p>
-      <button @click="showNewConvModal = true" class="btn-primary mt-8">New Conversation</button>
+      <h3 class="text-xl font-bold">Selecciona una conversación</h3>
+      <p class="text-text-secondary mt-2">Elige un chat de la izquierda para empezar a mensajear.</p>
+      <button @click="showNewConvModal = true" class="btn-primary mt-8">Nueva Conversación</button>
     </div>
 
     <!-- ═══════════ NEW CONVERSATION MODAL ═══════════ -->
@@ -177,22 +177,22 @@
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="showNewConvModal = false"></div>
         <div class="relative w-full max-w-sm bg-surface border border-white/10 rounded-2xl shadow-2xl p-6 space-y-5 z-10">
           <div class="flex items-center justify-between">
-            <h3 class="text-lg font-bold">New Conversation</h3>
+            <h3 class="text-lg font-bold">Nueva Conversación</h3>
             <button @click="showNewConvModal = false" class="p-1 text-text-secondary hover:text-white">
               <X class="w-5 h-5" />
             </button>
           </div>
 
-          <p class="text-sm text-text-secondary">Select a client to start a conversation:</p>
+          <p class="text-sm text-text-secondary">Selecciona un cliente para iniciar una conversación:</p>
 
           <div class="relative mb-2">
             <Search class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" />
-            <input v-model="clientSearch" type="text" placeholder="Search clients..." class="input-field w-full pl-10 text-sm" />
+            <input v-model="clientSearch" type="text" placeholder="Buscar clientes..." class="input-field w-full pl-10 text-sm" />
           </div>
 
           <div class="max-h-60 overflow-y-auto space-y-1">
             <div v-if="availableClients.length === 0" class="py-4 text-center text-text-secondary text-sm">
-              No clients found. <NuxtLink to="/clients" class="text-primary hover:underline">Add one first</NuxtLink>
+              No se encontraron clientes. <NuxtLink to="/clients" class="text-primary hover:underline">Añade uno primero</NuxtLink>
             </div>
             <button 
               v-for="c in availableClients" 
@@ -279,11 +279,11 @@ const formatTime = (dateStr) => {
   const now = new Date()
   const diff = now.getTime() - date.getTime()
   const mins = Math.floor(diff / 60000)
-  if (mins < 1) return 'Now'
+  if (mins < 1) return 'Ahora'
   if (mins < 60) return `${mins}m`
   const hours = Math.floor(mins / 60)
   if (hours < 24) return `${hours}h`
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+  return date.toLocaleDateString('es-ES', { month: 'short', day: 'numeric' })
 }
 
 const formatMsgTime = (dateStr) => {

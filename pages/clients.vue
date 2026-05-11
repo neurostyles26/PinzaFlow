@@ -2,12 +2,12 @@
   <div class="space-y-6">
     <div class="flex items-center justify-between">
       <div>
-        <h1 class="text-2xl font-bold">Clients</h1>
-        <p class="text-text-secondary mt-1">Manage and organize your customer database.</p>
+        <h1 class="text-2xl font-bold">Clientes</h1>
+        <p class="text-text-secondary mt-1">Gestiona y organiza tu base de datos de clientes.</p>
       </div>
       <button @click="openAddModal" class="btn-primary flex items-center gap-2">
         <UserPlus class="w-4 h-4" />
-        Add Client
+        Añadir Cliente
       </button>
     </div>
 
@@ -18,13 +18,13 @@
         <input 
           v-model="searchQuery"
           type="text" 
-          placeholder="Search by name, phone or tag..." 
+          placeholder="Buscar por nombre, teléfono o etiqueta..." 
           class="input-field w-full pl-10"
         />
       </div>
       <div class="flex gap-2">
         <select v-model="tagFilter" class="bg-background border border-white/10 rounded-xl px-4 py-2 text-sm focus:ring-1 focus:ring-primary outline-none">
-          <option value="">All Tags</option>
+          <option value="">Todas las Etiquetas</option>
           <option v-for="tag in allTags" :key="tag" :value="tag">{{ tag }}</option>
         </select>
       </div>
@@ -33,7 +33,7 @@
     <!-- Loading -->
     <div v-if="loading" class="card p-12 text-center">
       <div class="animate-spin w-8 h-8 border-2 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
-      <p class="text-text-secondary">Loading clients...</p>
+      <p class="text-text-secondary">Cargando clientes...</p>
     </div>
 
     <!-- Clients Table -->
@@ -42,11 +42,11 @@
         <table class="w-full text-left">
           <thead>
             <tr class="bg-white/5 text-xs uppercase text-text-secondary font-bold tracking-wider">
-              <th class="px-6 py-4">Client</th>
-              <th class="px-6 py-4">Contact</th>
-              <th class="px-6 py-4">Tags</th>
-              <th class="px-6 py-4">Added</th>
-              <th class="px-6 py-4 text-right">Actions</th>
+              <th class="px-6 py-4">Cliente</th>
+              <th class="px-6 py-4">Contacto</th>
+              <th class="px-6 py-4">Etiquetas</th>
+              <th class="px-6 py-4">Agregado</th>
+              <th class="px-6 py-4 text-right">Acciones</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-white/5">
@@ -83,13 +83,13 @@
               </td>
               <td class="px-6 py-4 text-right">
                 <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button @click="startConversation(client)" class="p-2 text-text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-all" title="Message">
+                  <button @click="startConversation(client)" class="p-2 text-text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-all" title="Mensaje">
                     <MessageSquare class="w-4 h-4" />
                   </button>
-                  <button @click="openEditModal(client)" class="p-2 text-text-secondary hover:text-white hover:bg-white/10 rounded-lg transition-all" title="Edit">
+                  <button @click="openEditModal(client)" class="p-2 text-text-secondary hover:text-white hover:bg-white/10 rounded-lg transition-all" title="Editar">
                     <Edit2 class="w-4 h-4" />
                   </button>
-                  <button @click="confirmDelete(client)" class="p-2 text-red-400 hover:bg-red-500/10 rounded-lg transition-all" title="Delete">
+                  <button @click="confirmDelete(client)" class="p-2 text-red-400 hover:bg-red-500/10 rounded-lg transition-all" title="Eliminar">
                     <Trash2 class="w-4 h-4" />
                   </button>
                 </div>
@@ -102,13 +102,13 @@
       <!-- Empty State -->
       <div v-if="filteredClients.length === 0 && !loading" class="p-12 text-center">
         <Users class="w-10 h-10 mx-auto mb-3 opacity-30" />
-        <p class="text-text-secondary">No clients found.</p>
-        <button @click="openAddModal" class="btn-primary mt-4 text-sm">Add your first client</button>
+        <p class="text-text-secondary">No se encontraron clientes.</p>
+        <button @click="openAddModal" class="btn-primary mt-4 text-sm">Añade tu primer cliente</button>
       </div>
 
       <!-- Pagination Info -->
       <div v-if="filteredClients.length > 0" class="p-4 border-t border-white/5 flex items-center justify-between">
-        <p class="text-xs text-text-secondary">Showing {{ filteredClients.length }} of {{ clients.length }} clients</p>
+        <p class="text-xs text-text-secondary">Mostrando {{ filteredClients.length }} de {{ clients.length }} clientes</p>
       </div>
     </div>
 
@@ -118,7 +118,7 @@
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="showModal = false"></div>
         <div class="relative w-full max-w-md bg-surface border border-white/10 rounded-2xl shadow-2xl p-6 space-y-5 z-10">
           <div class="flex items-center justify-between">
-            <h3 class="text-lg font-bold">{{ editingClient ? 'Edit Client' : 'Add Client' }}</h3>
+            <h3 class="text-lg font-bold">{{ editingClient ? 'Editar Cliente' : 'Añadir Cliente' }}</h3>
             <button @click="showModal = false" class="p-1 text-text-secondary hover:text-white transition-colors">
               <X class="w-5 h-5" />
             </button>
@@ -126,24 +126,24 @@
 
           <form @submit.prevent="saveClient" class="space-y-4">
             <div>
-              <label class="block text-sm font-medium text-text-secondary mb-1.5">Name *</label>
-              <input v-model="form.name" type="text" required class="input-field w-full" placeholder="John Doe" />
+              <label class="block text-sm font-medium text-text-secondary mb-1.5">Nombre *</label>
+              <input v-model="form.name" type="text" required class="input-field w-full" placeholder="ej. Juan Pérez" />
             </div>
             <div>
-              <label class="block text-sm font-medium text-text-secondary mb-1.5">Phone *</label>
+              <label class="block text-sm font-medium text-text-secondary mb-1.5">Teléfono *</label>
               <input v-model="form.phone" type="tel" required class="input-field w-full" placeholder="+57 300 123 4567" />
             </div>
             <div>
-              <label class="block text-sm font-medium text-text-secondary mb-1.5">Email</label>
-              <input v-model="form.email" type="email" class="input-field w-full" placeholder="client@example.com" />
+              <label class="block text-sm font-medium text-text-secondary mb-1.5">Correo Electrónico</label>
+              <input v-model="form.email" type="email" class="input-field w-full" placeholder="cliente@ejemplo.com" />
             </div>
             <div>
-              <label class="block text-sm font-medium text-text-secondary mb-1.5">Tags (comma separated)</label>
-              <input v-model="form.tagsStr" type="text" class="input-field w-full" placeholder="VIP, Lead, New Customer" />
+              <label class="block text-sm font-medium text-text-secondary mb-1.5">Etiquetas (separadas por coma)</label>
+              <input v-model="form.tagsStr" type="text" class="input-field w-full" placeholder="VIP, Lead, Nuevo Cliente" />
             </div>
             <div>
-              <label class="block text-sm font-medium text-text-secondary mb-1.5">Notes</label>
-              <textarea v-model="form.notes" rows="2" class="input-field w-full resize-none" placeholder="Any notes about this client..."></textarea>
+              <label class="block text-sm font-medium text-text-secondary mb-1.5">Notas</label>
+              <textarea v-model="form.notes" rows="2" class="input-field w-full resize-none" placeholder="Cualquier nota sobre este cliente..."></textarea>
             </div>
 
             <div v-if="error" class="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
@@ -152,11 +152,11 @@
 
             <div class="flex gap-3 pt-2">
               <button type="button" @click="showModal = false" class="flex-1 px-4 py-2 border border-white/10 rounded-xl hover:bg-white/5 transition-all font-medium">
-                Cancel
+                Cancelar
               </button>
               <button type="submit" :disabled="saving" class="flex-1 btn-primary flex items-center justify-center gap-2">
                 <span v-if="saving" class="animate-spin w-4 h-4 border-2 border-background border-t-transparent rounded-full"></span>
-                {{ saving ? 'Saving...' : (editingClient ? 'Update' : 'Add Client') }}
+                {{ saving ? 'Guardando...' : (editingClient ? 'Actualizar' : 'Añadir Cliente') }}
               </button>
             </div>
           </form>
@@ -173,18 +173,18 @@
             <div class="w-12 h-12 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center mx-auto mb-4">
               <Trash2 class="w-6 h-6 text-red-400" />
             </div>
-            <h3 class="text-lg font-bold">Delete Client</h3>
+            <h3 class="text-lg font-bold">Eliminar Cliente</h3>
             <p class="text-sm text-text-secondary mt-2">
-              Are you sure you want to delete <strong class="text-white">{{ deletingClient?.name }}</strong>? This action cannot be undone.
+              ¿Estás seguro de que quieres eliminar a <strong class="text-white">{{ deletingClient?.name }}</strong>? Esta acción no se puede deshacer.
             </p>
           </div>
           <div class="flex gap-3">
             <button @click="showDeleteModal = false" class="flex-1 px-4 py-2 border border-white/10 rounded-xl hover:bg-white/5 transition-all font-medium">
-              Cancel
+              Cancelar
             </button>
             <button @click="handleDelete" :disabled="saving" class="flex-1 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-xl transition-all font-medium flex items-center justify-center gap-2">
               <span v-if="saving" class="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full"></span>
-              {{ saving ? 'Deleting...' : 'Delete' }}
+              {{ saving ? 'Eliminando...' : 'Eliminar' }}
             </button>
           </div>
         </div>
@@ -249,7 +249,7 @@ const filteredClients = computed(() => {
 const formatDate = (dateStr) => {
   if (!dateStr) return '—'
   const d = new Date(dateStr)
-  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  return d.toLocaleDateString('es-ES', { month: 'short', day: 'numeric', year: 'numeric' })
 }
 
 const resetForm = () => {

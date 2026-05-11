@@ -9,10 +9,10 @@
         </div>
         
         <div class="hidden md:flex items-center gap-8">
-          <a href="#features" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Features</a>
-          <a href="#pricing" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Pricing</a>
-          <NuxtLink to="/login" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Login</NuxtLink>
-          <NuxtLink to="/signup" class="btn-primary py-2 px-6 text-sm">Get Started</NuxtLink>
+          <a href="#features" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Características</a>
+          <a href="#pricing" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Precios</a>
+          <NuxtLink to="/login" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Iniciar Sesión</NuxtLink>
+          <NuxtLink to="/signup" class="btn-primary py-2 px-6 text-sm">Empezar Ahora</NuxtLink>
         </div>
 
         <button class="md:hidden text-text-secondary">
@@ -31,16 +31,16 @@
           Tu clouser inteligente siempre activo
         </div>
         <h2 class="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1]">
-          Automate your sales via <span class="text-primary">WhatsApp</span>
+          Automatiza tus ventas por <span class="text-primary">WhatsApp</span>
         </h2>
         <p class="text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
-          The all-in-one platform for small businesses in Latin America to manage conversations, track clients, and increase sales with AI.
+          La plataforma todo-en-uno para pequeñas empresas en Latinoamérica. Gestiona conversaciones, rastrea clientes y aumenta tus ventas con IA.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-          <NuxtLink to="/signup" class="btn-primary py-4 px-8 text-lg w-full sm:w-auto">Start Free Trial</NuxtLink>
+          <NuxtLink to="/signup" class="btn-primary py-4 px-8 text-lg w-full sm:w-auto">Empieza Gratis</NuxtLink>
           <a href="#demo" class="px-8 py-4 rounded-xl border border-white/10 hover:bg-white/5 transition-all text-lg font-semibold w-full sm:w-auto flex items-center justify-center gap-2">
             <Play class="w-5 h-5" />
-            Watch Demo
+            Ver Demo
           </a>
         </div>
       </div>
@@ -75,7 +75,7 @@
             <span class="font-black text-2xl tracking-tighter">Pin<span class="text-primary">Flowser</span></span>
           </div>
           <p class="text-text-secondary leading-relaxed">
-            Revolutionizing sales in Latin America with the power of AI and WhatsApp. Close more deals, faster.
+            Revolucionando las ventas en Latinoamérica con el poder de la IA y WhatsApp. Cierra más tratos, más rápido.
           </p>
           <div class="flex items-center gap-4">
             <a href="https://facebook.com" target="_blank" class="p-3 bg-white/5 rounded-xl hover:bg-primary/10 hover:text-primary transition-all duration-300">
@@ -92,30 +92,30 @@
 
         <!-- Quick Links -->
         <div class="space-y-8">
-          <h4 class="text-sm font-black uppercase tracking-[0.2em] text-white">Product</h4>
+          <h4 class="text-sm font-black uppercase tracking-[0.2em] text-white">Producto</h4>
           <ul class="space-y-4 text-text-secondary font-medium">
             <li><NuxtLink to="/dashboard" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Dashboard</NuxtLink></li>
-            <li><NuxtLink to="/clouser" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> AI Sales Clouser</NuxtLink></li>
-            <li><NuxtLink to="/clients" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> CRM Management</NuxtLink></li>
-            <li><a href="#pricing" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Pricing Plans</a></li>
+            <li><NuxtLink to="/clouser" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Cierre de Ventas IA</NuxtLink></li>
+            <li><NuxtLink to="/clients" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Gestión de CRM</NuxtLink></li>
+            <li><a href="#pricing" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Planes de Precios</a></li>
           </ul>
         </div>
 
         <!-- Support -->
         <div class="space-y-8">
-          <h4 class="text-sm font-black uppercase tracking-[0.2em] text-white">Contact & Support</h4>
+          <h4 class="text-sm font-black uppercase tracking-[0.2em] text-white">Contacto y Soporte</h4>
           <ul class="space-y-5 text-text-secondary font-medium">
             <li class="flex items-start gap-3">
               <Mail class="w-5 h-5 text-primary shrink-0" />
               <div class="space-y-1">
-                <span class="block text-xs text-text-secondary/50 uppercase">Email Support</span>
+                <span class="block text-xs text-text-secondary/50 uppercase">Soporte por Email</span>
                 <a href="mailto:pinzasoporte@gmail.com" class="hover:text-white transition-colors">pinzasoporte@gmail.com</a>
               </div>
             </li>
             <li class="flex items-start gap-3">
               <Phone class="w-5 h-5 text-primary shrink-0" />
               <div class="space-y-1">
-                <span class="block text-xs text-text-secondary/50 uppercase">WhatsApp Contact</span>
+                <span class="block text-xs text-text-secondary/50 uppercase">Contacto WhatsApp</span>
                 <a href="tel:+573015997188" class="hover:text-white transition-colors">+57 301 599 7188</a>
               </div>
             </li>
@@ -124,11 +124,11 @@
 
         <!-- Legal -->
         <div class="space-y-8">
-          <h4 class="text-sm font-black uppercase tracking-[0.2em] text-white">Legal & Privacy</h4>
+          <h4 class="text-sm font-black uppercase tracking-[0.2em] text-white">Legal y Privacidad</h4>
           <ul class="space-y-4 text-text-secondary font-medium">
-            <li><NuxtLink to="/terms" class="hover:text-primary transition-colors flex items-center gap-2 group"><ExternalLink class="w-4 h-4" /> Terms of Service</NuxtLink></li>
-            <li><NuxtLink to="/privacy" class="hover:text-primary transition-colors flex items-center gap-2 group"><ExternalLink class="w-4 h-4" /> Privacy Policy</NuxtLink></li>
-            <li><a href="#" class="hover:text-primary transition-colors flex items-center gap-2 group"><ExternalLink class="w-4 h-4" /> Cookies Policy</a></li>
+            <li><NuxtLink to="/terms" class="hover:text-primary transition-colors flex items-center gap-2 group"><ExternalLink class="w-4 h-4" /> Términos de Servicio</NuxtLink></li>
+            <li><NuxtLink to="/privacy" class="hover:text-primary transition-colors flex items-center gap-2 group"><ExternalLink class="w-4 h-4" /> Política de Privacidad</NuxtLink></li>
+            <li><a href="#" class="hover:text-primary transition-colors flex items-center gap-2 group"><ExternalLink class="w-4 h-4" /> Política de Cookies</a></li>
           </ul>
         </div>
       </div>
@@ -136,10 +136,10 @@
       <!-- Copyright Area -->
       <div class="max-w-7xl mx-auto pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
         <p class="text-text-secondary font-medium">
-          &copy; 2026 <span class="text-white font-bold">PinFlowser</span>. All rights reserved.
+          &copy; 2026 <span class="text-white font-bold">PinFlowser</span>. Todos los derechos reservados.
         </p>
         <div class="flex items-center gap-2 px-6 py-2 rounded-full bg-white/5 border border-white/10 group">
-          <span class="text-text-secondary">Owned and operated by</span>
+          <span class="text-text-secondary">Propiedad de</span>
           <span class="text-white font-bold tracking-tight">Edisson Pinza</span>
           <div class="w-2 h-2 rounded-full bg-primary animate-pulse ml-1"></div>
         </div>

@@ -5,15 +5,15 @@ export default defineEventHandler(async (event) => {
   if (!user) throw createError({ statusCode: 401, statusMessage: 'No autorizado' })
 
   const body = await readBody(event)
-  const { phone, message } = body
+  const { test_phone } = body
 
-  if (!phone || !message) {
-    throw createError({ statusCode: 400, statusMessage: 'Teléfono y mensaje son requeridos' })
+  if (!test_phone) {
+    throw createError({ statusCode: 400, statusMessage: 'Número de teléfono de prueba requerido' })
   }
 
   const supabase = await serverSupabaseClient(event)
   
-  // Fetch user's WhatsApp credentials from profile
+  // Fetch current user's WhatsApp credentials
   const { data: profile, error: profileError } = await (supabase.from('profiles') as any)
     .select('whatsapp_phone_number_id, whatsapp_access_token')
     .eq('id', user.id)
@@ -22,12 +22,12 @@ export default defineEventHandler(async (event) => {
   if (profileError || !profile?.whatsapp_phone_number_id || !profile?.whatsapp_access_token) {
     throw createError({ 
       statusCode: 400, 
-      statusMessage: 'WhatsApp no configurado. Ve a Ajustes > WhatsApp para conectar tu cuenta.' 
+      statusMessage: 'Configuración incompleta. Por favor guarda tus credenciales en Ajustes primero.' 
     })
   }
 
   try {
-    // Send message via Meta WhatsApp Cloud API
+    // Send test message
     const response = await $fetch(`https://graph.facebook.com/v17.0/${profile.whatsapp_phone_number_id}/messages`, {
       method: 'POST',
       headers: {
@@ -37,18 +37,18 @@ export default defineEventHandler(async (event) => {
       body: {
         messaging_product: 'whatsapp',
         recipient_type: 'individual',
-        to: phone.replace(/\D/g, ''), // Clean phone number
+        to: test_phone.replace(/\D/g, ''),
         type: 'text',
-        text: { body: message }
+        text: { body: '¡Hola! Este es un mensaje de prueba de PinFlowser. Tu conexión con WhatsApp Cloud API se ha configurado correctamente. 🚀' }
       }
     })
 
-    return { success: true, data: response }
+    return { success: true, message: '¡Mensaje de prueba enviado correctamente!' }
   } catch (err: any) {
-    console.error('WhatsApp API Error:', err.data || err.message)
+    console.error('WhatsApp Test API Error:', err.data || err.message)
     throw createError({
       statusCode: err.statusCode || 500,
-      statusMessage: err.data?.error?.message || 'Error al enviar mensaje por WhatsApp'
+      statusMessage: err.data?.error?.message || 'Error al enviar mensaje de prueba. Verifica tus credenciales.'
     })
   }
 })
