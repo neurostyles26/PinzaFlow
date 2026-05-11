@@ -55,10 +55,10 @@ export const usePinza = () => {
     if (!user.value) return
 
     const [clientsRes, convsRes, activeConvsRes, msgsRes] = await Promise.all([
-      supabase.from('clients').select('id', { count: 'exact', head: true }),
-      supabase.from('conversations').select('id', { count: 'exact', head: true }),
-      supabase.from('conversations').select('id', { count: 'exact', head: true }).eq('status', 'active'),
-      supabase.from('messages').select('id', { count: 'exact', head: true })
+      (supabase.from('clients') as any).select('id', { count: 'exact', head: true }),
+      (supabase.from('conversations') as any).select('id', { count: 'exact', head: true }),
+      (supabase.from('conversations') as any).select('id', { count: 'exact', head: true }).eq('status', 'active'),
+      (supabase.from('messages') as any).select('id', { count: 'exact', head: true })
     ])
 
     dashboardStats.value = {
@@ -75,8 +75,7 @@ export const usePinza = () => {
     loading.value = true
     error.value = null
 
-    const { data, error: err } = await supabase
-      .from('clients')
+    const { data, error: err } = await (supabase.from('clients') as any)
       .select('*')
       .order('created_at', { ascending: false })
 
@@ -93,8 +92,7 @@ export const usePinza = () => {
     loading.value = true
     error.value = null
 
-    const { data, error: err } = await supabase
-      .from('clients')
+    const { data, error: err } = await (supabase.from('clients') as any)
       .insert({
         ...client,
         user_id: user.value.id,
@@ -118,8 +116,7 @@ export const usePinza = () => {
     loading.value = true
     error.value = null
 
-    const { data, error: err } = await supabase
-      .from('clients')
+    const { data, error: err } = await (supabase.from('clients') as any)
       .update(updates)
       .eq('id', id)
       .select()
@@ -141,8 +138,7 @@ export const usePinza = () => {
     loading.value = true
     error.value = null
 
-    const { error: err } = await supabase
-      .from('clients')
+    const { error: err } = await (supabase.from('clients') as any)
       .delete()
       .eq('id', id)
 
@@ -187,8 +183,7 @@ export const usePinza = () => {
     )
     if (existing) return existing
 
-    const { data, error: err } = await supabase
-      .from('conversations')
+    const { data, error: err } = await (supabase.from('conversations') as any)
       .insert({
         user_id: user.value.id,
         client_id: clientId,
@@ -252,8 +247,7 @@ export const usePinza = () => {
       }
     }
 
-    const { data, error: err } = await supabase
-      .from('messages')
+    const { data, error: err } = await (supabase.from('messages') as any)
       .insert({
         conversation_id: conversationId,
         user_id: user.value.id,
@@ -272,8 +266,7 @@ export const usePinza = () => {
     messages.value.push(data)
 
     // Update conversation last_message
-    await supabase
-      .from('conversations')
+    await (supabase.from('conversations') as any)
       .update({
         last_message: content,
         updated_at: new Date().toISOString()
@@ -295,8 +288,7 @@ export const usePinza = () => {
 
   const fetchProfile = async () => {
     if (!user.value) return
-    const { data } = await supabase
-      .from('profiles')
+    const { data } = await (supabase.from('profiles') as any)
       .select('*')
       .eq('id', user.value.id)
       .single()
@@ -308,8 +300,7 @@ export const usePinza = () => {
     if (!user.value) return null
     error.value = null
 
-    const { data, error: err } = await supabase
-      .from('profiles')
+    const { data, error: err } = await (supabase.from('profiles') as any)
       .update(updates)
       .eq('id', user.value.id)
       .select()
