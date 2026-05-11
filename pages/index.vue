@@ -22,7 +22,7 @@
     </nav>
 
     <!-- Hero -->
-    <section class="pt-40 pb-20 px-6 relative overflow-hidden">
+    <section class="pt-40 pb-40 px-6 relative">
       <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/5 blur-[120px] rounded-full -z-10"></div>
       
       <div class="max-w-4xl mx-auto text-center space-y-8">
@@ -46,25 +46,20 @@
       </div>
 
       <!-- Dashboard Preview -->
-      <div class="max-w-6xl mx-auto mt-24 relative perspective-1000">
-        <!-- Decorative Glows -->
-        <div class="absolute -top-20 -left-20 w-64 h-64 bg-primary/20 rounded-full blur-[100px] animate-pulse"></div>
-        <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-blue-500/20 rounded-full blur-[100px]"></div>
-
+      <div class="max-w-screen-2xl mx-auto mt-24 relative px-4">
+        <!-- Ambient Glow -->
+        <div class="absolute inset-0 bg-primary/5 blur-[120px] rounded-full opacity-50"></div>
+        
         <div class="relative group">
-          <!-- Glass effect behind the image -->
-          <div class="absolute inset-0 bg-primary/5 rounded-[2.5rem] -rotate-2 group-hover:rotate-0 transition-transform duration-700"></div>
-          
-          <div class="relative bg-surface/50 backdrop-blur-sm rounded-[2.5rem] border border-white/10 shadow-[0_0_100px_-20px_rgba(34,197,94,0.3)] overflow-hidden transition-all duration-700 group-hover:scale-[1.02] group-hover:-translate-y-2">
-            <!-- Actual Image -->
+          <!-- Floating effect -->
+          <div class="relative transition-all duration-1000 group-hover:-translate-y-4">
             <img 
               src="/Portada-software.png" 
               alt="PinFlowser Dashboard Preview" 
-              class="w-full h-auto object-contain block"
+              class="w-full h-auto rounded-3xl shadow-[0_30px_100px_-20px_rgba(0,0,0,0.5)] border border-white/5"
             />
-            
-            <!-- Shimmer effect -->
-            <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+            <!-- Shine effect -->
+            <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
           </div>
         </div>
       </div>

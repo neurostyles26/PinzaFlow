@@ -47,8 +47,8 @@ export default defineNuxtConfig({
         { src: 'icon-152x152.png', sizes: '152x152', type: 'image/png' },
         { src: 'icon-192x192.png', sizes: '192x192', type: 'image/png' },
         { src: 'icon-384x384.png', sizes: '384x384', type: 'image/png' },
-        { src: 'icon-512x512.png', sizes: '512x512', type: 'image/png' },
-        { src: 'maskable-icon-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }
+        { src: 'PinFlowSer-PWA.png', sizes: '512x512', type: 'image/png' },
+        { src: 'PinFlowSer-PWA.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }
       ]
     },
     workbox: {
@@ -79,10 +79,8 @@ export default defineNuxtConfig({
         { name: 'twitter:description', content: 'WhatsApp CRM & AI Sales Clouser for LatAm' }
       ],
       link: [
-        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
-        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-        { rel: 'mask-icon', href: '/favicon.png', color: '#22C55E' }
+        { rel: 'icon', type: 'image/png', href: '/PinFlowSer-PWA.png' },
+        { rel: 'apple-touch-icon', href: '/PinFlowSer-PWA.png' }
       ]
     }
   }
