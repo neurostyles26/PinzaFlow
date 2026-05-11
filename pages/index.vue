@@ -66,33 +66,102 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-20 border-t border-white/5 px-6">
-      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div class="space-y-4">
+    <footer class="pt-24 pb-12 border-t border-white/5 px-6 bg-surface/20 backdrop-blur-3xl">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+        <!-- Brand & Socials -->
+        <div class="space-y-8">
           <div class="flex items-center gap-3 text-white">
-            <img src="/PinFlowSer-PWA.png" alt="PinFlowser Logo" class="w-8 h-8 rounded-lg" />
-            <span class="font-bold text-xl">PinFlowser</span>
+            <img src="/PinFlowSer-PWA.png" alt="PinFlowser Logo" class="w-12 h-12 rounded-2xl shadow-xl shadow-primary/20" />
+            <span class="font-black text-2xl tracking-tighter">Pin<span class="text-primary">Flowser</span></span>
           </div>
-          <p class="text-sm text-text-secondary">AI-powered sales clouser for Latin America.</p>
+          <p class="text-text-secondary leading-relaxed">
+            Revolutionizing sales in Latin America with the power of AI and WhatsApp. Close more deals, faster.
+          </p>
+          <div class="flex items-center gap-4">
+            <a href="https://facebook.com" target="_blank" class="p-3 bg-white/5 rounded-xl hover:bg-primary/10 hover:text-primary transition-all duration-300">
+              <Facebook class="w-5 h-5" />
+            </a>
+            <a href="https://instagram.com" target="_blank" class="p-3 bg-white/5 rounded-xl hover:bg-primary/10 hover:text-primary transition-all duration-300">
+              <Instagram class="w-5 h-5" />
+            </a>
+            <a href="https://wa.me/573015997188" target="_blank" class="p-3 bg-white/5 rounded-xl hover:bg-primary/10 hover:text-primary transition-all duration-300">
+              <MessageCircle class="w-5 h-5" />
+            </a>
+          </div>
         </div>
-        <div v-for="i in 3" :key="i" class="space-y-4">
-          <h4 class="font-bold text-sm uppercase tracking-widest text-text-secondary">Column {{ i }}</h4>
-          <ul class="space-y-2 text-sm text-text-secondary">
-            <li><a href="#" class="hover:text-primary transition-colors">Link 1</a></li>
-            <li><a href="#" class="hover:text-primary transition-colors">Link 2</a></li>
-            <li><a href="#" class="hover:text-primary transition-colors">Link 3</a></li>
+
+        <!-- Quick Links -->
+        <div class="space-y-8">
+          <h4 class="text-sm font-black uppercase tracking-[0.2em] text-white">Product</h4>
+          <ul class="space-y-4 text-text-secondary font-medium">
+            <li><NuxtLink to="/dashboard" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Dashboard</NuxtLink></li>
+            <li><NuxtLink to="/clouser" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> AI Sales Clouser</NuxtLink></li>
+            <li><NuxtLink to="/clients" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> CRM Management</NuxtLink></li>
+            <li><a href="#pricing" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Pricing Plans</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="space-y-8">
+          <h4 class="text-sm font-black uppercase tracking-[0.2em] text-white">Contact & Support</h4>
+          <ul class="space-y-5 text-text-secondary font-medium">
+            <li class="flex items-start gap-3">
+              <Mail class="w-5 h-5 text-primary shrink-0" />
+              <div class="space-y-1">
+                <span class="block text-xs text-text-secondary/50 uppercase">Email Support</span>
+                <a href="mailto:pinzasoporte@gmail.com" class="hover:text-white transition-colors">pinzasoporte@gmail.com</a>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <Phone class="w-5 h-5 text-primary shrink-0" />
+              <div class="space-y-1">
+                <span class="block text-xs text-text-secondary/50 uppercase">WhatsApp Contact</span>
+                <a href="tel:+573015997188" class="hover:text-white transition-colors">+57 301 599 7188</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div class="space-y-8">
+          <h4 class="text-sm font-black uppercase tracking-[0.2em] text-white">Legal & Privacy</h4>
+          <ul class="space-y-4 text-text-secondary font-medium">
+            <li><NuxtLink to="/terms" class="hover:text-primary transition-colors flex items-center gap-2 group"><ExternalLink class="w-4 h-4" /> Terms of Service</NuxtLink></li>
+            <li><NuxtLink to="/privacy" class="hover:text-primary transition-colors flex items-center gap-2 group"><ExternalLink class="w-4 h-4" /> Privacy Policy</NuxtLink></li>
+            <li><a href="#" class="hover:text-primary transition-colors flex items-center gap-2 group"><ExternalLink class="w-4 h-4" /> Cookies Policy</a></li>
           </ul>
         </div>
       </div>
-      <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 text-center text-xs text-text-secondary">
-        &copy; 2026 PinFlowser. All rights reserved. Made for LatAm small businesses.
+
+      <!-- Copyright Area -->
+      <div class="max-w-7xl mx-auto pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
+        <p class="text-text-secondary font-medium">
+          &copy; 2026 <span class="text-white font-bold">PinFlowser</span>. All rights reserved.
+        </p>
+        <div class="flex items-center gap-2 px-6 py-2 rounded-full bg-white/5 border border-white/10 group">
+          <span class="text-text-secondary">Owned and operated by</span>
+          <span class="text-white font-bold tracking-tight">Edisson Pinza</span>
+          <div class="w-2 h-2 rounded-full bg-primary animate-pulse ml-1"></div>
+        </div>
       </div>
     </footer>
   </div>
 </template>
 
 <script setup>
-import { Menu, Zap, Play } from 'lucide-vue-next'
+import { 
+  Menu, 
+  Zap, 
+  Play, 
+  Facebook, 
+  Instagram, 
+  MessageCircle, 
+  Mail, 
+  Phone, 
+  ExternalLink, 
+  ChevronRight,
+  ArrowRight 
+} from 'lucide-vue-next'
 
 definePageMeta({
   layout: false
