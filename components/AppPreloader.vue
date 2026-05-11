@@ -6,16 +6,21 @@
       
       <div class="relative flex flex-col items-center">
         <!-- Logo Animation -->
-        <div class="relative w-24 h-24 mb-8">
-          <!-- Outer Rotating Ring -->
-          <div class="absolute inset-0 border-4 border-primary/20 rounded-[2rem] rotate-45"></div>
-          <div class="absolute inset-0 border-4 border-t-primary border-r-transparent border-b-transparent border-l-transparent rounded-[2rem] rotate-45 animate-spin-slow"></div>
+        <div class="relative w-32 h-32 mb-8 flex items-center justify-center">
+          <!-- Outer Rotating Rings -->
+          <div class="absolute inset-0 border-2 border-primary/10 rounded-[2.5rem] rotate-45 animate-pulse"></div>
+          <div class="absolute inset-2 border-b-2 border-primary rounded-[2rem] animate-spin-slow"></div>
+          <div class="absolute inset-4 border-t-2 border-blue-500 rounded-[1.5rem] animate-spin-slow-reverse"></div>
           
-          <!-- Inner Glowing Core -->
-          <div class="absolute inset-4 bg-gradient-to-br from-primary to-emerald-400 rounded-2xl shadow-[0_0_30px_rgba(34,197,94,0.4)] flex items-center justify-center overflow-hidden group">
-            <span class="text-background text-4xl font-black italic">P</span>
+          <!-- Logo Core -->
+          <div class="relative w-20 h-20 bg-gradient-to-br from-white/5 to-white/10 rounded-[1.5rem] p-0.5 backdrop-blur-sm border border-white/10 shadow-2xl overflow-hidden group">
+            <img 
+              src="/PinFlowSer-PWA.png" 
+              alt="PinFlowser Logo" 
+              class="w-full h-full object-contain p-2 animate-float-mini"
+            />
             <!-- Scanning Light Effect -->
-            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full animate-scan"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-scan"></div>
           </div>
         </div>
 
@@ -62,7 +67,11 @@ onMounted(() => {
 
 <style scoped>
 .animate-spin-slow {
-  animation: spin 2s linear infinite;
+  animation: spin 3s linear infinite;
+}
+
+.animate-spin-slow-reverse {
+  animation: spin-reverse 4s linear infinite;
 }
 
 @keyframes spin {
@@ -70,13 +79,27 @@ onMounted(() => {
   to { transform: rotate(360deg); }
 }
 
+@keyframes spin-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
 @keyframes scan {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
 
+@keyframes float-mini {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-float-mini {
+  animation: float-mini 3s ease-in-out infinite;
+}
+
 .animate-scan {
-  animation: scan 1.5s infinite;
+  animation: scan 2s infinite;
 }
 
 .fade-enter-active,

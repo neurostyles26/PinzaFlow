@@ -65,6 +65,110 @@
       </div>
     </section>
 
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-32 px-6 relative overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 blur-[120px] rounded-full -z-10"></div>
+      
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center space-y-4 mb-20">
+          <h2 class="text-4xl md:text-6xl font-black tracking-tight text-white">Planes que <span class="text-primary">escalan</span> contigo</h2>
+          <p class="text-text-secondary text-lg max-w-2xl mx-auto">Elige el plan perfecto para potenciar tu negocio hoy mismo.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+          <!-- Plan Emprendedor -->
+          <div class="p-8 rounded-[3rem] bg-surface/40 backdrop-blur-3xl border border-white/5 hover:border-white/10 transition-all duration-500 group">
+            <div class="space-y-6">
+              <div class="space-y-2">
+                <h3 class="text-xl font-bold text-white">Emprendedor</h3>
+                <p class="text-sm text-text-secondary">Para quienes están empezando.</p>
+              </div>
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-black text-white">$50.000</span>
+                <span class="text-text-secondary">/mes</span>
+              </div>
+              <NuxtLink to="/signup" class="block w-full py-4 rounded-2xl bg-white/5 border border-white/10 text-white font-bold text-center hover:bg-white/10 transition-all">Empezar Ahora</NuxtLink>
+              <ul class="space-y-4 pt-4">
+                <li class="flex items-center gap-3 text-sm text-text-secondary">
+                  <Check class="w-5 h-5 text-primary" /> 500 Mensajes de IA al mes
+                </li>
+                <li class="flex items-center gap-3 text-sm text-text-secondary">
+                  <Check class="w-5 h-5 text-primary" /> CRM Básico
+                </li>
+                <li class="flex items-center gap-3 text-sm text-text-secondary">
+                  <Check class="w-5 h-5 text-primary" /> Gestión de 1 Número
+                </li>
+                <li class="flex items-center gap-3 text-sm text-text-secondary opacity-40 italic">
+                   Sin reportes avanzados
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Plan Pro -->
+          <div class="p-10 rounded-[3.5rem] bg-gradient-to-b from-primary/20 to-primary/5 backdrop-blur-3xl border-2 border-primary/30 shadow-[0_0_50px_-10px_rgba(34,197,94,0.3)] relative group transform hover:scale-105 transition-all duration-500">
+            <div class="absolute -top-5 left-1/2 -translate-x-1/2 px-6 py-2 bg-primary text-background text-xs font-black uppercase tracking-[0.2em] rounded-full shadow-xl">
+              Más Popular
+            </div>
+            <div class="space-y-6">
+              <div class="space-y-2 text-center">
+                <h3 class="text-2xl font-black text-white">Plan Pro</h3>
+                <p class="text-sm text-primary font-bold">Todo lo que necesitas para crecer</p>
+              </div>
+              <div class="flex items-baseline justify-center gap-1">
+                <span class="text-6xl font-black text-white">$120.000</span>
+                <span class="text-text-secondary font-bold">/mes</span>
+              </div>
+              <NuxtLink to="/signup" class="block w-full py-5 rounded-3xl bg-primary text-background font-black text-center shadow-2xl shadow-primary/30 hover:scale-105 transition-all">Obtener Pro Ahora</NuxtLink>
+              <ul class="space-y-5 pt-4">
+                <li class="flex items-center gap-3 text-sm text-white font-medium">
+                  <Zap class="w-6 h-6 text-primary" /> Mensajes de IA Ilimitados
+                </li>
+                <li class="flex items-center gap-3 text-sm text-white font-medium">
+                  <Zap class="w-6 h-6 text-primary" /> CRM Avanzado + Etiquetas
+                </li>
+                <li class="flex items-center gap-3 text-sm text-white font-medium">
+                  <Zap class="w-6 h-6 text-primary" /> Dashboard de Analíticas
+                </li>
+                <li class="flex items-center gap-3 text-sm text-white font-medium">
+                  <Zap class="w-6 h-6 text-primary" /> Soporte Prioritario 24/7
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Plan Enterprise -->
+          <div class="p-8 rounded-[3rem] bg-surface/40 backdrop-blur-3xl border border-white/5 hover:border-white/10 transition-all duration-500 group">
+            <div class="space-y-6">
+              <div class="space-y-2">
+                <h3 class="text-xl font-bold text-white">Enterprise</h3>
+                <p class="text-sm text-text-secondary">Para grandes operaciones.</p>
+              </div>
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-black text-white">$250.000</span>
+                <span class="text-text-secondary">/mes</span>
+              </div>
+              <NuxtLink to="/signup" class="block w-full py-4 rounded-2xl bg-white/5 border border-white/10 text-white font-bold text-center hover:bg-white/10 transition-all">Contactar Ventas</NuxtLink>
+              <ul class="space-y-4 pt-4">
+                <li class="flex items-center gap-3 text-sm text-text-secondary">
+                  <Check class="w-5 h-5 text-primary" /> Hasta 5 Usuarios Agentes
+                </li>
+                <li class="flex items-center gap-3 text-sm text-text-secondary">
+                  <Check class="w-5 h-5 text-primary" /> API Personalizada
+                </li>
+                <li class="flex items-center gap-3 text-sm text-text-secondary">
+                  <Check class="w-5 h-5 text-primary" /> Automatización a Medida
+                </li>
+                <li class="flex items-center gap-3 text-sm text-text-secondary font-bold text-white">
+                  <Check class="w-5 h-5 text-primary" /> Consultoría de Ventas IA
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Footer -->
     <footer class="pt-24 pb-12 border-t border-white/5 px-6 bg-surface/20 backdrop-blur-3xl">
       <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
@@ -160,7 +264,8 @@ import {
   Phone, 
   ExternalLink, 
   ChevronRight,
-  ArrowRight 
+  ArrowRight,
+  Check
 } from 'lucide-vue-next'
 
 definePageMeta({
