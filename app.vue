@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="min-h-screen bg-background selection:bg-primary/30 selection:text-primary">
+    <AppPreloader />
     <NuxtPwaManifest />
     <NuxtLayout>
       <NuxtPage />

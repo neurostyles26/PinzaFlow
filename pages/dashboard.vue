@@ -1,106 +1,165 @@
 <template>
-  <div class="space-y-8">
-    <div class="flex items-center justify-between">
-      <div>
-        <h1 class="text-2xl font-bold">Good morning, {{ userFirstName }}!</h1>
-        <p class="text-text-secondary mt-1">Here's what's happening with your PinzaFlow account today.</p>
-      </div>
-      <div class="flex gap-3">
-        <button @click="exportReport" class="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-xl transition-all border border-white/5 flex items-center gap-2">
-          <Download class="w-4 h-4" />
-          Export Report
-        </button>
-        <button @click="navigateTo('/clients')" class="btn-primary flex items-center gap-2">
-          <Plus class="w-4 h-4" />
-          New Client
-        </button>
+  <div class="space-y-10 pb-12">
+    <!-- Header / Hero Section -->
+    <div class="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-surface to-background border border-white/5 p-8 md:p-12 shadow-2xl">
+      <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-primary/10 rounded-full blur-[100px] animate-pulse"></div>
+      <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-72 h-72 bg-blue-500/10 rounded-full blur-[80px]"></div>
+      
+      <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
+        <div class="space-y-2">
+          <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight">
+            Good morning, <span class="text-gradient">{{ userFirstName }}</span>!
+          </h1>
+          <p class="text-text-secondary text-lg max-w-xl">
+            Your AI Sales Clouser has been busy. You have <span class="text-primary font-semibold">{{ dashboardStats.activeConversations }} active conversations</span> waiting for your input.
+          </p>
+        </div>
+        
+        <div class="flex flex-wrap gap-4">
+          <button @click="exportReport" class="btn-secondary group flex items-center gap-3">
+            <div class="p-2 bg-white/5 rounded-lg group-hover:bg-white/10 transition-colors">
+              <Download class="w-5 h-5 text-text-secondary" />
+            </div>
+            <span>Export Report</span>
+          </button>
+          <button @click="navigateTo('/clients')" class="btn-primary group flex items-center gap-3">
+            <div class="p-2 bg-background/20 rounded-lg group-hover:bg-background/30 transition-colors">
+              <Plus class="w-5 h-5" />
+            </div>
+            <span>New Client</span>
+          </button>
+        </div>
       </div>
     </div>
 
     <!-- Stats Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div v-for="stat in computedStats" :key="stat.label" class="card group hover:border-white/10 transition-all duration-300">
-        <div class="flex items-start justify-between">
-          <div>
-            <p class="text-sm font-medium text-text-secondary">{{ stat.label }}</p>
-            <h3 class="text-2xl font-bold mt-1">
-              <span v-if="statsLoading" class="inline-block w-16 h-7 bg-white/5 rounded animate-pulse"></span>
+      <div 
+        v-for="(stat, index) in computedStats" 
+        :key="stat.label" 
+        class="card group hover:-translate-y-1 transition-all duration-500 overflow-hidden"
+        :style="{ '--delay': index * 100 + 'ms' }"
+      >
+        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+          <component :is="stat.icon" class="w-16 h-16" />
+        </div>
+        
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2.5 rounded-2xl" :style="{ color: stat.hex, backgroundColor: stat.hex + '1a' }">
+              <component :is="stat.icon" class="w-6 h-6" />
+            </div>
+            <p class="text-sm font-semibold text-text-secondary uppercase tracking-wider">{{ stat.label }}</p>
+          </div>
+          
+          <div class="flex items-end justify-between">
+            <h3 class="text-4xl font-black">
+              <span v-if="statsLoading" class="inline-block w-20 h-10 bg-white/5 rounded-lg animate-pulse"></span>
               <span v-else>{{ stat.value }}</span>
             </h3>
+            <div class="flex items-center gap-1.5 text-[10px] font-bold px-2 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
+              <TrendingUp class="w-3 h-3" />
+              <span>LIVE</span>
+            </div>
           </div>
-          <div class="p-2 rounded-lg" :style="{ color: stat.hex, backgroundColor: stat.hex + '1a' }">
-            <component :is="stat.icon" class="w-5 h-5" />
-          </div>
-        </div>
-        <div class="mt-4 flex items-center gap-1.5 text-xs">
-          <TrendingUp class="w-3 h-3 text-primary" />
-          <span class="text-primary font-medium">Live</span>
-          <span class="text-text-secondary">from database</span>
         </div>
       </div>
     </div>
 
     <!-- Main Content Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
       <!-- Recent Conversations -->
-      <div class="lg:col-span-2 card p-0 overflow-hidden">
-        <div class="p-6 border-b border-white/5 flex items-center justify-between">
-          <h3 class="font-bold">Recent Conversations</h3>
-          <NuxtLink to="/conversations" class="text-sm text-primary hover:underline">View all</NuxtLink>
+      <div class="lg:col-span-2 space-y-6">
+        <div class="flex items-center justify-between px-2">
+          <h3 class="text-xl font-bold flex items-center gap-3">
+            <MessageSquare class="w-6 h-6 text-primary" />
+            Recent Conversations
+          </h3>
+          <NuxtLink to="/conversations" class="text-sm font-semibold text-primary hover:text-primary-accent transition-colors flex items-center gap-1">
+            View all
+            <ArrowRight class="w-4 h-4" />
+          </NuxtLink>
         </div>
-        <div class="divide-y divide-white/5">
+
+        <div class="space-y-4">
           <div 
             v-for="conv in recentConversations" 
             :key="conv.id" 
             @click="navigateTo('/conversations')"
-            class="p-4 hover:bg-white/5 transition-colors cursor-pointer flex items-center gap-4"
+            class="group p-5 bg-surface/30 hover:bg-surface/60 border border-white/5 hover:border-white/20 rounded-[1.5rem] cursor-pointer transition-all duration-300 flex items-center gap-5 shadow-sm hover:shadow-xl"
           >
-            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-sm">
-              {{ conv.client?.name?.charAt(0) || '?' }}
-            </div>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center justify-between">
-                <h4 class="text-sm font-semibold truncate">{{ conv.client?.name || 'Unknown' }}</h4>
-                <span class="text-xs text-text-secondary">{{ formatTime(conv.updated_at) }}</span>
+            <div class="relative">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center font-bold text-lg border border-white/10 group-hover:scale-110 transition-transform duration-300">
+                {{ conv.client?.name?.charAt(0) || '?' }}
               </div>
-              <p class="text-xs text-text-secondary truncate mt-0.5">{{ conv.last_message || 'No messages yet' }}</p>
+              <div v-if="conv.unread_count > 0" class="absolute -top-1 -right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center text-[10px] font-black text-background border-2 border-background ring-2 ring-primary/20">
+                {{ conv.unread_count }}
+              </div>
             </div>
-            <div v-if="conv.unread_count > 0" class="w-5 h-5 bg-primary rounded-full flex items-center justify-center text-[10px] font-bold text-background">
-              {{ conv.unread_count }}
+            
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between mb-1">
+                <h4 class="text-base font-bold truncate group-hover:text-primary transition-colors">{{ conv.client?.name || 'Unknown' }}</h4>
+                <span class="text-xs font-medium text-text-secondary bg-white/5 px-2 py-1 rounded-md">{{ formatTime(conv.updated_at) }}</span>
+              </div>
+              <p class="text-sm text-text-secondary truncate leading-relaxed">{{ conv.last_message || 'Waiting for the first message...' }}</p>
+            </div>
+            
+            <div class="p-2 rounded-xl bg-white/5 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0">
+              <ChevronRight class="w-5 h-5 text-primary" />
             </div>
           </div>
-        </div>
-        <div v-if="recentConversations.length === 0" class="p-12 text-center text-text-secondary">
-          <MessageSquare class="w-10 h-10 mx-auto mb-3 opacity-30" />
-          <p>No active conversations yet.</p>
-          <p class="text-xs mt-1">Start by adding clients and messaging them.</p>
+
+          <div v-if="recentConversations.length === 0" class="p-16 text-center card border-dashed border-white/10 bg-transparent shadow-none">
+            <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
+              <MessageSquare class="w-10 h-10 text-text-secondary opacity-30" />
+            </div>
+            <h4 class="text-lg font-bold mb-2">No active conversations yet</h4>
+            <p class="text-text-secondary text-sm max-w-xs mx-auto mb-8">Ready to grow? Add your first client and start a conversation with AI assistance.</p>
+            <button @click="navigateTo('/clients')" class="btn-primary">Add First Client</button>
+          </div>
         </div>
       </div>
 
-      <!-- Quick Actions / Analytics -->
-      <div class="space-y-6">
-        <div class="card bg-gradient-to-br from-primary/10 to-transparent border-primary/10">
-          <Zap class="w-6 h-6 text-primary mb-4" />
-          <h3 class="font-bold text-lg">AI Automation</h3>
-          <p class="text-sm text-text-secondary mt-2">Activate AI auto-responses to handle common customer inquiries 24/7.</p>
-          <button @click="navigateTo('/automations')" class="btn-primary w-full mt-6 text-sm">Configure AI</button>
+      <!-- Sidebar / AI Insights -->
+      <div class="space-y-8">
+        <!-- AI Promotion Card -->
+        <div class="card bg-gradient-to-br from-primary/20 via-surface/40 to-surface/40 border-primary/20 overflow-hidden group">
+          <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-all duration-700"></div>
+          <Zap class="w-10 h-10 text-primary mb-6 animate-float" />
+          <h3 class="text-2xl font-black mb-3 leading-tight">Elevate with AI Automations</h3>
+          <p class="text-sm text-text-secondary leading-relaxed mb-8">Let PinFlowser handle the routine while you focus on closing big deals. 24/7 smart responses ready to go.</p>
+          <button @click="navigateTo('/automations')" class="btn-primary w-full group">
+            Configure AI
+            <ArrowRight class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
 
-        <div class="card">
-          <h3 class="font-bold mb-4">Recent Clients</h3>
-          <div v-if="recentClients.length === 0" class="text-sm text-text-secondary text-center py-4">
-            No clients yet. Add your first client!
-          </div>
-          <div v-else class="space-y-3">
-            <div v-for="client in recentClients" :key="client.id" class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold">
-                {{ client.name.charAt(0) }}
-              </div>
-              <div class="flex-1 min-w-0">
-                <p class="text-sm font-medium truncate">{{ client.name }}</p>
-                <p class="text-[10px] text-text-secondary">{{ client.phone }}</p>
+        <!-- Recent Activity / Clients -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-bold px-2 flex items-center gap-2">
+            <Users class="w-5 h-5 text-blue-400" />
+            Recent Clients
+          </h3>
+          <div class="card p-5 space-y-4">
+            <div v-if="recentClients.length === 0" class="text-sm text-text-secondary text-center py-8 bg-white/5 rounded-2xl border border-dashed border-white/10">
+              No clients found.
+            </div>
+            <div v-else class="space-y-4">
+              <div v-for="client in recentClients" :key="client.id" class="flex items-center gap-4 group cursor-pointer">
+                <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-sm font-bold border border-white/5 group-hover:bg-primary/10 group-hover:border-primary/20 transition-all">
+                  {{ client.name.charAt(0) }}
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-bold truncate group-hover:text-primary transition-colors">{{ client.name }}</p>
+                  <p class="text-[10px] text-text-secondary uppercase tracking-widest font-semibold">{{ client.phone }}</p>
+                </div>
+                <div class="w-2 h-2 rounded-full bg-primary/40 group-hover:bg-primary transition-colors"></div>
               </div>
             </div>
+            <button @click="navigateTo('/clients')" class="w-full py-3 text-xs font-bold text-text-secondary hover:text-text-primary bg-white/5 hover:bg-white/10 rounded-xl transition-all border border-white/5">
+              VIEW ALL CLIENTS
+            </button>
           </div>
         </div>
       </div>
@@ -117,7 +176,9 @@ import {
   Plus, 
   Zap,
   MousePointer2,
-  Clock
+  Clock,
+  ArrowRight,
+  ChevronRight
 } from 'lucide-vue-next'
 
 const user = useSupabaseUser()
@@ -162,7 +223,6 @@ const formatTime = (dateStr) => {
 }
 
 const exportReport = () => {
-  // Simple CSV export of stats
   const csv = `PinFlowser Report\n\nTotal Clients,${dashboardStats.value.totalClients}\nTotal Conversations,${dashboardStats.value.totalConversations}\nActive Conversations,${dashboardStats.value.activeConversations}\nTotal Messages,${dashboardStats.value.totalMessages}`
   const blob = new Blob([csv], { type: 'text/csv' })
   const url = URL.createObjectURL(blob)

@@ -5,6 +5,10 @@
 @layer base {
   body {
     @apply bg-background text-text-primary font-sans antialiased;
+    background-image: 
+      radial-gradient(at 0% 0%, hsla(142, 70%, 50%, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsla(217, 91%, 60%, 0.05) 0px, transparent 50%);
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -14,30 +18,59 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-primary hover:bg-primary-accent text-background font-semibold py-2 px-4 rounded-xl transition-all duration-200 shadow-lg shadow-primary/20;
+    @apply relative overflow-hidden bg-primary hover:bg-primary-accent text-background font-bold py-2.5 px-6 rounded-2xl transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply bg-white/5 hover:bg-white/10 text-text-primary border border-white/10 font-semibold py-2.5 px-6 rounded-2xl transition-all duration-300 backdrop-blur-md;
   }
 
   .card {
-    @apply bg-surface border border-white/5 rounded-xl p-6 shadow-xl;
+    @apply relative bg-surface/40 backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 shadow-2xl transition-all duration-500 hover:border-white/20 hover:bg-surface/60;
   }
 
-  .input-field {
-    @apply bg-background border border-white/10 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all;
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-2xl border border-white/10 shadow-2xl;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400;
   }
 }
 
-/* Glassmorphism effects */
-.glass {
-  @apply bg-white/5 backdrop-blur-lg border border-white/10;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.glow-primary {
+  box-shadow: 0 0 40px -10px theme('colors.primary.DEFAULT');
 }
 
 /* Transitions */
 .page-enter-active,
 .page-leave-active {
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .page-enter-from,
 .page-leave-to {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(20px) scale(0.98);
 }
