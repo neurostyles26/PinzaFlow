@@ -24,7 +24,7 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/login',
       callback: '/confirm',
-      exclude: ['/signup', '/'],
+      exclude: ['/signup', '/', '/features', '/demo', '/about', '/forgot-password', '/reset-password'],
     }
   },
   pwa: {
