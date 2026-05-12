@@ -21,23 +21,22 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div class="relative">
             <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/20 blur-3xl rounded-full"></div>
-            <div class="relative rounded-[4rem] overflow-hidden border-4 border-white/5 shadow-2xl aspect-[4/5] bg-surface group">
-              <div class="absolute inset-0 flex items-center justify-center text-text-secondary p-12 text-center">
-                <div class="space-y-4">
-                  <UserCircle class="w-20 h-20 mx-auto opacity-20" />
-                  <p class="font-bold opacity-50">Espacio para la foto de Edisson Pinza</p>
-                </div>
-              </div>
+            <div class="relative rounded-[4rem] overflow-hidden border-4 border-white/10 shadow-[0_20px_50px_rgba(34,197,94,0.2)] aspect-[4/5] bg-surface group">
               <img 
-                v-if="creatorPhoto" 
-                :src="creatorPhoto" 
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                alt="Edisson Pinza - Creador" 
+                src="/Foto-sobre-mi.jpeg" 
+                class="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-1000" 
+                alt="Edisson Pinza - Creador de PinFlowser" 
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
-              <div class="absolute bottom-12 left-12 right-12">
+              <!-- Premium Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-60"></div>
+              
+              <!-- Bottom Badge -->
+              <div class="absolute bottom-12 left-12 right-12 backdrop-blur-md bg-white/5 border border-white/10 p-8 rounded-[2.5rem] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <h4 class="text-4xl font-black text-white tracking-tighter">Edisson Pinza</h4>
-                <p class="text-primary font-bold uppercase tracking-widest text-sm">Fundador & Visionario</p>
+                <div class="flex items-center gap-2 mt-2">
+                  <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                  <p class="text-primary font-bold uppercase tracking-widest text-xs">Fundador & CEO</p>
+                </div>
               </div>
             </div>
           </div>
