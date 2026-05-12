@@ -79,8 +79,7 @@
 <script setup>
 import { ArrowLeft } from 'lucide-vue-next'
 definePageMeta({
-  layout: false,
-  middleware: 'guest'
+  layout: false
 })
 
 const supabase = useSupabaseClient()

@@ -83,6 +83,37 @@
         </div>
       </div>
 
+      <!-- Lead Data Extraction -->
+      <div class="p-4 bg-primary/10 border border-primary/20 rounded-2xl space-y-4">
+        <div class="flex items-center gap-2">
+          <Database class="w-4 h-4 text-primary" />
+          <h3 class="text-xs font-black text-primary uppercase tracking-widest">Extracción de Leads</h3>
+        </div>
+        <div class="space-y-3">
+          <div class="space-y-1">
+            <span class="text-[10px] text-text-secondary uppercase font-bold">Nombre Completo</span>
+            <div class="text-sm font-bold bg-background/50 p-2 rounded-lg border border-white/5 min-h-[32px]">
+              {{ extractedData.name || 'Buscando...' }}
+            </div>
+          </div>
+          <div class="space-y-1">
+            <span class="text-[10px] text-text-secondary uppercase font-bold">Celular</span>
+            <div class="text-sm font-bold bg-background/50 p-2 rounded-lg border border-white/5 min-h-[32px]">
+              {{ extractedData.phone || 'Buscando...' }}
+            </div>
+          </div>
+          <div class="space-y-1">
+            <span class="text-[10px] text-text-secondary uppercase font-bold">Correo Electrónico</span>
+            <div class="text-sm font-bold bg-background/50 p-2 rounded-lg border border-white/5 min-h-[32px]">
+              {{ extractedData.email || 'Buscando...' }}
+            </div>
+          </div>
+        </div>
+        <button @click="activateExtraction" class="w-full py-2 bg-primary text-background text-xs font-black rounded-xl hover:scale-105 transition-all shadow-lg shadow-primary/20">
+          ACTIVAR EXTRACCIÓN
+        </button>
+      </div>
+
       <!-- Next Actions -->
       <div class="space-y-3">
         <h3 class="text-xs font-semibold text-text-secondary uppercase tracking-wider">Acciones Recomendadas</h3>
@@ -99,7 +130,7 @@
 </template>
 
 <script setup>
-import { Bot, Send, RefreshCw, CheckCircle2 } from 'lucide-vue-next'
+import { Bot, Send, RefreshCw, CheckCircle2, Database } from 'lucide-vue-next'
 
 const { 
   suggestedReplies, 
@@ -108,4 +139,19 @@ const {
   objectionInsights,
   qualifyLead
 } = useClouser()
+
+const extractedData = reactive({
+  name: '',
+  phone: '',
+  email: ''
+})
+
+const activateExtraction = () => {
+  // Simulación de extracción IA
+  setTimeout(() => {
+    extractedData.name = 'Juan Carlos Rodríguez'
+    extractedData.phone = '+57 321 456 7890'
+    extractedData.email = 'juan.rodriguez@email.com'
+  }, 1500)
+}
 </script>

@@ -315,6 +315,36 @@ export const usePinza = () => {
     return data
   }
 
+  const exportClientsToCSV = () => {
+    if (!clients.value.length) {
+      alert('No hay clientes para exportar.')
+      return
+    }
+
+    const headers = ['Nombre Completo', 'Teléfono/WhatsApp', 'Correo Electrónico', 'Fecha de Registro']
+    const rows = clients.value.map(c => [
+      c.name,
+      c.phone,
+      c.email || 'No suministrado',
+      new Date(c.created_at || '').toLocaleDateString()
+    ])
+
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(r => r.join(','))
+    ].join('\n')
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
+    const link = document.createElement('a')
+    const url = URL.createObjectURL(blob)
+    link.setAttribute('href', url)
+    link.setAttribute('download', `PinFlowser_Leads_${new Date().toISOString().split('T')[0]}.csv`)
+    link.style.visibility = 'hidden'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   const isPro = computed(() => ['Pro', 'Enterprise'].includes(profile.value?.subscription_plan))
   const isEnterprise = computed(() => profile.value?.subscription_plan === 'Enterprise')
 
@@ -336,6 +366,7 @@ export const usePinza = () => {
     addClient,
     updateClient,
     deleteClient,
+    exportClientsToCSV,
     // Conversations
     fetchConversations,
     createConversation,

@@ -5,10 +5,16 @@
         <h1 class="text-2xl font-bold">Clientes</h1>
         <p class="text-text-secondary mt-1">Gestiona y organiza tu base de datos de clientes.</p>
       </div>
-      <button @click="openAddModal" class="btn-primary flex items-center gap-2">
-        <UserPlus class="w-4 h-4" />
-        Añadir Cliente
-      </button>
+      <div class="flex items-center gap-3">
+        <button @click="exportClientsToCSV" class="px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all font-bold flex items-center gap-2 text-sm">
+          <Download class="w-4 h-4 text-text-secondary" />
+          Exportar a Google Sheets
+        </button>
+        <button @click="openAddModal" class="btn-primary flex items-center gap-2 px-6 py-3">
+          <UserPlus class="w-4 h-4" />
+          Añadir Cliente
+        </button>
+      </div>
     </div>
 
     <!-- Filters & Search -->
@@ -202,10 +208,21 @@ import {
   Edit2, 
   Trash2,
   Users,
-  X
+  X,
+  Download
 } from 'lucide-vue-next'
 
-const { clients, loading, error, fetchClients, addClient, updateClient, deleteClient, createConversation } = usePinza()
+const { 
+  clients, 
+  loading, 
+  error, 
+  fetchClients, 
+  addClient, 
+  updateClient, 
+  deleteClient, 
+  createConversation,
+  exportClientsToCSV
+} = usePinza()
 
 const searchQuery = ref('')
 const tagFilter = ref('')
