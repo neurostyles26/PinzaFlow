@@ -9,10 +9,11 @@
         </div>
         
         <div class="hidden md:flex items-center gap-8">
-          <a href="#features" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Características</a>
+          <NuxtLink to="/features" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Características</NuxtLink>
+          <NuxtLink to="/demo" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Ver Demo</NuxtLink>
           <a href="#pricing" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Precios</a>
           <NuxtLink to="/login" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Iniciar Sesión</NuxtLink>
-          <NuxtLink to="/signup" class="btn-primary py-2 px-6 text-sm">Empezar Ahora</NuxtLink>
+          <NuxtLink to="/signup" class="btn-primary py-2 px-6 text-sm font-bold">Empezar Ahora</NuxtLink>
         </div>
 
         <button class="md:hidden text-text-secondary">
@@ -42,10 +43,10 @@
           <NuxtLink to="/signup" class="btn-primary py-5 px-10 text-xl w-full sm:w-auto shadow-2xl shadow-primary/40 hover:scale-105 transition-all">
             Empezar Gratis Ahora
           </NuxtLink>
-          <a href="#demo" class="px-10 py-5 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all text-xl font-bold w-full sm:w-auto flex items-center justify-center gap-3">
+          <NuxtLink to="/demo" class="px-10 py-5 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all text-xl font-bold w-full sm:w-auto flex items-center justify-center gap-3">
             <Play class="w-6 h-6 fill-white" />
             Ver Demo
-          </a>
+          </NuxtLink>
         </div>
       </div>
 
@@ -314,8 +315,8 @@
         <div class="space-y-8">
           <h4 class="text-xs font-black uppercase tracking-[0.3em] text-white">Producto</h4>
           <ul class="space-y-4 text-text-secondary font-bold text-sm">
-            <li><a href="#features" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Características</a></li>
-            <li><a href="#demo" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Video Demo</a></li>
+            <li><NuxtLink to="/features" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Características</NuxtLink></li>
+            <li><NuxtLink to="/demo" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Video Demo</NuxtLink></li>
             <li><a href="#pricing" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Planes de Precios</a></li>
             <li><a href="#about" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Sobre Nosotros</a></li>
           </ul>
