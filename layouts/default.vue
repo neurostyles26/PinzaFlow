@@ -28,8 +28,9 @@
 
       <div class="p-4 border-t border-white/5">
         <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/5 group hover:bg-white/10 transition-all cursor-pointer" @click="navigateTo('/plans')">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-accent flex items-center justify-center text-background font-bold shadow-lg shadow-primary/20">
-            {{ userInitial }}
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-accent flex items-center justify-center text-background font-bold shadow-lg shadow-primary/20 overflow-hidden">
+            <img v-if="profile?.avatar_url" :src="profile.avatar_url" class="w-full h-full object-cover" />
+            <span v-else>{{ userInitial }}</span>
           </div>
           <div class="flex-1 min-w-0">
             <p class="text-sm font-bold truncate">{{ userName }}</p>

@@ -70,6 +70,13 @@
                 <div class="flex flex-col md:flex-row items-center gap-8 mb-12">
                   <!-- Avatar Section -->
                   <div class="relative">
+                    <input 
+                      type="file" 
+                      ref="fileInput" 
+                      class="hidden" 
+                      accept="image/*" 
+                      @change="handleFileUpload" 
+                    />
                     <div class="w-32 h-32 rounded-[2.5rem] bg-gradient-to-br from-primary to-blue-600 p-1 shadow-2xl">
                       <div class="w-full h-full rounded-[2.3rem] bg-[#0A0A0B] flex items-center justify-center overflow-hidden">
                         <img 
@@ -77,10 +84,15 @@
                           :src="profile.avatar_url" 
                           class="w-full h-full object-cover"
                         />
+                        <div v-else-if="uploading" class="animate-spin w-8 h-8 border-2 border-primary border-t-transparent rounded-full"></div>
                         <User v-else class="w-12 h-12 text-primary" />
                       </div>
                     </div>
-                    <button class="absolute -bottom-2 -right-2 p-3 bg-white text-background rounded-2xl shadow-xl hover:scale-110 transition-transform">
+                    <button 
+                      type="button"
+                      @click="$refs.fileInput.click()" 
+                      class="absolute -bottom-2 -right-2 p-3 bg-white text-background rounded-2xl shadow-xl hover:scale-110 transition-transform"
+                    >
                       <Camera class="w-4 h-4" />
                     </button>
                   </div>
@@ -473,8 +485,43 @@ const saved = ref(false)
 const showDeleteConfirm = ref(false)
 const activeTab = ref('profile')
 const testing = ref(false)
+const uploading = ref(false)
 const testResult = ref({ success: null, message: '' })
 const testPhone = ref('')
+
+const handleFileUpload = async (event) => {
+  const file = event.target.files[0]
+  if (!file) return
+
+  uploading.value = true
+  error.value = null
+
+  try {
+    const fileExt = file.name.split('.').pop()
+    const fileName = `${user.value.id}-${Math.random()}.${fileExt}`
+    const filePath = `profiles/${fileName}`
+
+    const { error: uploadError } = await supabase.storage
+      .from('avatars')
+      .upload(filePath, file)
+
+    if (uploadError) throw uploadError
+
+    const { data: { publicUrl } } = supabase.storage
+      .from('avatars')
+      .getPublicUrl(filePath)
+
+    await updateProfile({ avatar_url: publicUrl })
+    await fetchProfile()
+    
+    saved.value = true
+    setTimeout(() => { saved.value = false }, 3000)
+  } catch (err) {
+    error.value = "Error al subir la imagen: " + err.message
+  } finally {
+    uploading.value = false
+  }
+}
 
 const tabs = [
   { id: 'profile', label: 'Mi Perfil', icon: User },
