@@ -9,7 +9,7 @@
     </NuxtLink>
 
     <div class="w-full max-w-md space-y-8">
-      <div class="text-center">
+      <div v-if="!signupSuccess" class="text-center">
         <div class="mx-auto flex justify-center mb-4">
           <img src="/PinFlowSer-PWA.png" alt="PinFlowser Logo" class="w-12 h-12 rounded-xl shadow-xl shadow-primary/30" />
         </div>
@@ -17,7 +17,21 @@
         <p class="mt-2 text-text-secondary">Empieza a automatizar tus ventas por WhatsApp hoy</p>
       </div>
 
-      <div class="card space-y-6">
+      <!-- Success State -->
+      <div v-if="signupSuccess" class="card text-center space-y-6 py-12 animate-fade-in">
+        <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+          <MailCheck class="w-10 h-10 text-primary" />
+        </div>
+        <h2 class="text-3xl font-black text-white">¡Casi listo!</h2>
+        <p class="text-text-secondary font-medium leading-relaxed px-4">
+          Hemos enviado un enlace de verificación a <br/>
+          <span class="text-white font-bold">{{ email }}</span>.
+        </p>
+        <p class="text-sm text-text-secondary italic">Por favor, revisa tu bandeja de entrada y spam.</p>
+        <NuxtLink to="/login" class="btn-primary inline-flex py-3 px-8 mt-4">Ir al Inicio de Sesión</NuxtLink>
+      </div>
+
+      <div v-if="!signupSuccess" class="card space-y-6">
         <form @submit.prevent="handleSignup" class="space-y-4">
           <div>
             <label class="block text-sm font-black text-text-secondary uppercase tracking-widest mb-1.5 ml-1">Nombre Completo</label>
@@ -65,7 +79,7 @@
         </form>
       </div>
 
-      <p class="text-center text-sm text-text-secondary">
+      <p v-if="!signupSuccess" class="text-center text-sm text-text-secondary">
         ¿Ya tienes una cuenta? 
         <NuxtLink to="/login" class="text-primary hover:text-primary-accent font-black transition-colors">Inicia sesión</NuxtLink>
       </p>
@@ -74,7 +88,7 @@
 </template>
 
 <script setup>
-import { ArrowLeft } from 'lucide-vue-next'
+import { ArrowLeft, MailCheck } from 'lucide-vue-next'
 definePageMeta({
   layout: false,
   middleware: 'guest'
@@ -86,6 +100,7 @@ const email = ref('')
 const password = ref('')
 const loading = ref(false)
 const error = ref(null)
+const signupSuccess = ref(false)
 
 const handleSignup = async () => {
   loading.value = true
@@ -105,12 +120,11 @@ const handleSignup = async () => {
 
   if (authError) {
     error.value = authError.message
+    loading.value = false
   } else {
-    // Show success or navigate
-    alert('Signup successful! Please check your email to verify.')
-    navigateTo('/login')
+    // Éxito: Cambiamos el estado para mostrar un mensaje profesional en el template
+    signupSuccess.value = true
+    loading.value = false
   }
-  
-  loading.value = false
 }
 </script>
