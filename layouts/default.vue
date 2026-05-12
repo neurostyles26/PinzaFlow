@@ -174,13 +174,16 @@ import {
   LogOut,
   Bot,
   ChevronDown,
+  ChevronRight,
   User,
-  Plus
+  Plus,
+  Database
 } from 'lucide-vue-next'
 
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 const route = useRoute()
+const { profile, fetchProfile } = usePinza()
 const { notifications, unreadCount, markAllAsRead, fetchNotifications } = useNotifications()
 
 const isSidebarOpen = ref(false)
@@ -235,6 +238,7 @@ const handleClickOutside = (e) => {
 onMounted(() => {
   window.addEventListener('click', handleClickOutside)
   fetchNotifications()
+  fetchProfile()
 })
 
 onUnmounted(() => {
