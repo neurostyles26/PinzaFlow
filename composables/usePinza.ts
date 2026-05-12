@@ -315,6 +315,9 @@ export const usePinza = () => {
     return data
   }
 
+  const isPro = computed(() => ['Pro', 'Enterprise'].includes(profile.value?.subscription_plan))
+  const isEnterprise = computed(() => profile.value?.subscription_plan === 'Enterprise')
+
   return {
     // State
     clients,
@@ -324,6 +327,8 @@ export const usePinza = () => {
     error,
     dashboardStats,
     profile,
+    isPro,
+    isEnterprise,
     // Dashboard
     fetchDashboardStats,
     // Clients

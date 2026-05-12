@@ -27,14 +27,15 @@
       </nav>
 
       <div class="p-4 border-t border-white/5">
-        <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/5 group hover:bg-white/10 transition-all cursor-pointer" @click="navigateTo('/settings')">
+        <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/5 group hover:bg-white/10 transition-all cursor-pointer" @click="navigateTo('/plans')">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-accent flex items-center justify-center text-background font-bold shadow-lg shadow-primary/20">
             {{ userInitial }}
           </div>
           <div class="flex-1 min-w-0">
             <p class="text-sm font-bold truncate">{{ userName }}</p>
-            <p class="text-[10px] text-text-secondary uppercase tracking-widest font-bold">Pro Plan</p>
+            <p class="text-[10px] text-primary uppercase tracking-widest font-black">{{ profile?.subscription_plan || 'Sin Plan' }}</p>
           </div>
+          <ChevronRight class="w-4 h-4 text-text-secondary group-hover:text-primary transition-colors" />
         </div>
       </div>
     </aside>

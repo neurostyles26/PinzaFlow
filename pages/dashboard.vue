@@ -207,6 +207,23 @@
         </div>
       </div>
     </div>
+
+    <!-- Upgrade Banner for Non-Pro -->
+    <div v-if="!isPro" class="mt-12 p-8 rounded-[3rem] bg-gradient-to-r from-primary/10 via-background to-background border border-primary/20 flex flex-col md:flex-row items-center justify-between gap-8 overflow-hidden relative group">
+      <div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-all duration-1000"></div>
+      <div class="flex items-center gap-6 relative z-10">
+        <div class="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center border border-primary/30">
+          <Rocket class="w-8 h-8 text-primary" />
+        </div>
+        <div>
+          <h4 class="text-2xl font-black text-white tracking-tighter">¿Listo para desbloquear todo el potencial?</h4>
+          <p class="text-text-secondary font-medium">Obtén mensajes ilimitados y entrenamiento personalizado con el Plan Pro.</p>
+        </div>
+      </div>
+      <NuxtLink to="/plans" class="btn-primary px-10 py-4 shadow-xl shadow-primary/20 hover:scale-105 transition-all relative z-10">
+        Subir a Plan Pro
+      </NuxtLink>
+    </div>
   </div>
 </template>
 
@@ -236,7 +253,8 @@ const {
   conversations, 
   fetchConversations,
   profile,
-  fetchProfile
+  fetchProfile,
+  isPro
 } = usePinza()
 
 const isWhatsAppConfigured = computed(() => {

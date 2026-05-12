@@ -1,5 +1,19 @@
 <template>
-  <div class="space-y-8 pb-12">
+  <div class="relative space-y-8 pb-12">
+    <!-- Plan Restriction Overlay -->
+    <div v-if="!isPro" class="absolute inset-0 z-40 flex flex-col items-center justify-center bg-background/60 backdrop-blur-md rounded-[3rem] text-center p-12">
+      <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mb-6 border border-primary/30">
+        <Lock class="w-10 h-10 text-primary" />
+      </div>
+      <h3 class="text-3xl font-black text-white mb-4 tracking-tighter">Función Exclusiva <span class="text-primary">PRO</span></h3>
+      <p class="text-text-secondary max-w-md mx-auto mb-10 text-lg font-medium">
+        El entrenamiento personalizado de la IA con documentos y PDF solo está disponible para usuarios del **Plan Pro** en adelante.
+      </p>
+      <NuxtLink to="/plans" class="btn-primary px-12 py-5 text-lg shadow-2xl shadow-primary/40 hover:scale-105 transition-all">
+        Ver Planes y Actualizar
+      </NuxtLink>
+    </div>
+
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
       <div>
@@ -156,9 +170,11 @@ import {
   X,
   Database,
   BrainCircuit,
-  FileSearch
+  FileSearch,
+  Lock
 } from 'lucide-vue-next'
 
+const { isPro } = usePinza()
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 
