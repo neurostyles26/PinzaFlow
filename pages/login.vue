@@ -30,7 +30,10 @@
             />
           </div>
           <div>
-            <label class="block text-sm font-black text-text-secondary uppercase tracking-widest mb-1.5 ml-1">Contraseña</label>
+            <div class="flex items-center justify-between mb-1.5 ml-1">
+              <label class="block text-sm font-black text-text-secondary uppercase tracking-widest">Contraseña</label>
+              <NuxtLink to="/forgot-password" class="text-xs font-bold text-primary hover:text-primary-accent transition-colors">¿Olvidaste tu contraseña?</NuxtLink>
+            </div>
             <input 
               v-model="password" 
               type="password" 

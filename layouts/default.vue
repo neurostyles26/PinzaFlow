@@ -58,7 +58,7 @@
             <Search class="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary group-focus-within:text-primary transition-colors" />
             <input 
               type="text" 
-              placeholder="Search anything..." 
+              placeholder="Buscar cualquier cosa..." 
               class="bg-white/5 border border-white/10 rounded-xl pl-11 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary/50 outline-none transition-all w-72"
             />
           </div>
@@ -77,8 +77,8 @@
             <transition name="fade-slide">
               <div v-if="isNotifOpen" class="absolute right-0 mt-4 w-80 bg-surface/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-50">
                 <div class="p-4 border-b border-white/5 flex items-center justify-between">
-                  <h3 class="font-bold">Notifications</h3>
-                  <button @click="markAllAsRead" class="text-xs text-primary hover:underline">Mark all as read</button>
+                  <h3 class="font-bold text-white">Notificaciones</h3>
+                  <button @click="markAllAsRead" class="text-xs text-primary hover:underline font-bold">Marcar como leídas</button>
                 </div>
                 <div class="max-h-96 overflow-y-auto">
                   <div v-for="notif in notifications" :key="notif.id" class="p-4 border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer group">
@@ -95,11 +95,11 @@
                     <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-3">
                       <BellOff class="w-6 h-6 text-text-secondary/30" />
                     </div>
-                    <p class="text-sm text-text-secondary">No notifications yet</p>
+                    <p class="text-sm text-text-secondary">No hay notificaciones aún</p>
                   </div>
                 </div>
                 <div class="p-3 bg-white/5 text-center">
-                  <button class="text-xs font-bold text-text-secondary hover:text-white transition-colors">View all notifications</button>
+                  <button class="text-xs font-bold text-text-secondary hover:text-white transition-colors">Ver todas las alertas</button>
                 </div>
               </div>
             </transition>
@@ -112,9 +112,9 @@
               class="flex items-center gap-2 p-1.5 pl-3 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all"
             >
               <div class="text-right hidden sm:block">
-                <p class="text-xs font-bold">{{ userName.split(' ')[0] }}</p>
+                <p class="text-xs font-bold text-white">{{ userName.split(' ')[0] }}</p>
               </div>
-              <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center text-xs font-black border border-primary/20">
+              <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center text-xs font-black border border-primary/20 text-white">
                 {{ userInitial }}
               </div>
               <ChevronDown class="w-4 h-4 text-text-secondary transition-transform" :class="{ 'rotate-180': isProfileOpen }" />
@@ -124,17 +124,17 @@
             <transition name="fade-slide">
               <div v-if="isProfileOpen" class="absolute right-0 mt-4 w-56 bg-surface/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-50">
                 <div class="p-4 border-b border-white/5">
-                  <p class="text-sm font-bold truncate">{{ userName }}</p>
+                  <p class="text-sm font-bold truncate text-white">{{ userName }}</p>
                   <p class="text-xs text-text-secondary truncate">{{ user?.email }}</p>
                 </div>
                 <div class="p-2">
                   <NuxtLink to="/settings" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/5 text-sm font-medium transition-all group">
                     <User class="w-4 h-4 text-text-secondary group-hover:text-primary" />
-                    Profile Settings
+                    Ajustes de Perfil
                   </NuxtLink>
                   <button @click="logout" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-red-500/10 text-sm font-medium transition-all group text-red-400">
                     <LogOut class="w-4 h-4" />
-                    Sign Out
+                    Cerrar Sesión
                   </button>
                 </div>
               </div>
@@ -189,10 +189,11 @@ const isProfileOpen = ref(false)
 const navItems = [
   { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
   { name: 'Clouser AI', path: '/clouser', icon: Bot },
-  { name: 'Conversations', path: '/conversations', icon: MessageSquare },
-  { name: 'Clients', path: '/clients', icon: Users },
-  { name: 'Automations', path: '/automations', icon: Zap },
-  { name: 'Settings', path: '/settings', icon: Settings },
+  { name: 'Conversaciones', path: '/conversations', icon: MessageSquare },
+  { name: 'Clientes', path: '/clients', icon: Users },
+  { name: 'Entrenamiento IA', path: '/knowledge', icon: Database },
+  { name: 'Automatizaciones', path: '/automations', icon: Zap },
+  { name: 'Ajustes', path: '/settings', icon: Settings },
 ]
 
 const currentPageName = computed(() => {
@@ -201,7 +202,7 @@ const currentPageName = computed(() => {
 })
 
 const currentPathFormatted = computed(() => {
-  return 'Main / ' + (currentPageName.value || 'Home')
+  return 'Principal / ' + (currentPageName.value || 'Inicio')
 })
 
 const userName = computed(() => user.value?.user_metadata?.full_name || user.value?.email || 'User')
