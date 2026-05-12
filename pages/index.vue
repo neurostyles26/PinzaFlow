@@ -73,7 +73,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div v-for="feature in features" :key="feature.title" class="p-10 rounded-[3rem] bg-surface border border-white/5 hover:border-primary/30 transition-all group">
-            <div :class="`w-16 h-16 rounded-2xl ${feature.bg} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shadow-lg` text-white">
+            <div :class="`w-16 h-16 rounded-2xl ${feature.bg} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shadow-lg text-white` ">
               <component :is="feature.icon" class="w-8 h-8" />
             </div>
             <h4 class="text-2xl font-bold text-white mb-4">{{ feature.title }}</h4>
