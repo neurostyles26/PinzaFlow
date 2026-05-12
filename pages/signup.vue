@@ -91,10 +91,12 @@ const handleSignup = async () => {
   loading.value = true
   error.value = null
   
+  const url = useRequestURL()
   const { error: authError } = await supabase.auth.signUp({
     email: email.value,
     password: password.value,
     options: {
+      emailRedirectTo: `${url.origin}/confirm`,
       data: {
         full_name: name.value
       }
