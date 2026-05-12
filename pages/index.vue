@@ -10,8 +10,8 @@
         
         <div class="hidden md:flex items-center gap-8">
           <NuxtLink to="/features" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Características</NuxtLink>
-          <NuxtLink to="/demo" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Ver Demo</NuxtLink>
           <a href="#pricing" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Precios</a>
+          <NuxtLink to="/about" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Sobre Nosotros</NuxtLink>
           <NuxtLink to="/login" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Iniciar Sesión</NuxtLink>
           <NuxtLink to="/signup" class="btn-primary py-2 px-6 text-sm font-bold">Empezar Ahora</NuxtLink>
         </div>
@@ -60,129 +60,6 @@
             class="w-full h-auto transform hover:scale-[1.02] transition-transform duration-700"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="py-32 px-6 relative">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-24 space-y-4">
-          <h2 class="text-sm font-black text-primary uppercase tracking-[0.3em]">Potencial Sin Límites</h2>
-          <h3 class="text-4xl md:text-6xl font-black text-white tracking-tighter">Todo lo que necesitas para <span class="text-primary">dominar</span> tu mercado</h3>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div v-for="feature in features" :key="feature.title" class="p-10 rounded-[3rem] bg-surface border border-white/5 hover:border-primary/30 transition-all group">
-            <div :class="`w-16 h-16 rounded-2xl ${feature.bg} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shadow-lg text-white` ">
-              <component :is="feature.icon" class="w-8 h-8" />
-            </div>
-            <h4 class="text-2xl font-bold text-white mb-4">{{ feature.title }}</h4>
-            <p class="text-text-secondary leading-relaxed font-medium">{{ feature.description }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Demo Section -->
-    <section id="demo" class="py-32 px-6 bg-surface/30">
-      <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div class="space-y-8">
-            <h2 class="text-sm font-black text-primary uppercase tracking-[0.3em]">Demostración en Vivo</h2>
-            <h3 class="text-4xl md:text-6xl font-black text-white tracking-tighter leading-none">Mira cómo el <span class="text-primary">Clouser AI</span> cierra ventas por ti</h3>
-            <p class="text-xl text-text-secondary leading-relaxed font-medium">
-              Nuestra IA no solo responde, ella persuade. Analiza la intención del cliente, usa tu base de conocimientos y guía la conversación hacia el cierre del trato de forma natural.
-            </p>
-            <div class="space-y-4">
-              <div v-for="step in demoSteps" :key="step.title" class="flex gap-4 p-6 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all">
-                <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
-                  <span class="text-primary font-black">{{ step.number }}</span>
-                </div>
-                <div>
-                  <h5 class="font-bold text-white">{{ step.title }}</h5>
-                  <p class="text-sm text-text-secondary">{{ step.desc }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="relative">
-            <div class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full opacity-50"></div>
-            <div class="relative card p-4 overflow-hidden border-2 border-primary/20">
-              <div class="aspect-video bg-black rounded-2xl flex items-center justify-center relative group cursor-pointer overflow-hidden">
-                <img src="/Portada-software.png" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700" alt="Demo Video Placeholder" />
-                <div class="relative z-10 w-20 h-20 rounded-full bg-primary flex items-center justify-center shadow-2xl shadow-primary/50 group-hover:scale-110 transition-all">
-                  <Play class="w-8 h-8 fill-background text-background ml-1" />
-                </div>
-                <div class="absolute bottom-6 left-6 right-6 p-4 glass rounded-xl">
-                  <p class="text-xs font-black uppercase tracking-widest text-primary mb-1">Video Demo</p>
-                  <p class="text-sm font-bold text-white">Descubre la potencia de PinFlowser en 2 minutos</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Us / Creator -->
-    <section id="about" class="py-32 px-6 relative">
-      <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div class="relative">
-            <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/20 blur-3xl rounded-full"></div>
-            <div class="relative rounded-[4rem] overflow-hidden border-4 border-white/5 shadow-2xl aspect-[4/5] bg-surface group">
-              <!-- El usuario reemplazará esta imagen -->
-              <div class="absolute inset-0 flex items-center justify-center text-text-secondary p-12 text-center">
-                <div class="space-y-4">
-                  <UserCircle class="w-20 h-20 mx-auto opacity-20" />
-                  <p class="font-bold opacity-50">Espacio para la foto de Edisson Pinza</p>
-                </div>
-              </div>
-              <img 
-                v-if="creatorPhoto" 
-                :src="creatorPhoto" 
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                alt="Edisson Pinza - Creador" 
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
-              <div class="absolute bottom-12 left-12 right-12">
-                <h4 class="text-4xl font-black text-white tracking-tighter">Edisson Pinza</h4>
-                <p class="text-primary font-bold uppercase tracking-widest text-sm">Fundador & Visionario</p>
-              </div>
-            </div>
-          </div>
-          <div class="space-y-8">
-            <h2 class="text-sm font-black text-primary uppercase tracking-[0.3em]">Sobre Nosotros</h2>
-            <h3 class="text-4xl md:text-6xl font-black text-white tracking-tighter">Pasión por el <span class="text-primary">éxito</span> de tu negocio</h3>
-            <p class="text-xl text-text-secondary leading-relaxed font-medium">
-              PinFlowser nació con una misión clara: democratizar el acceso a la Inteligencia Artificial para las pequeñas y medianas empresas de Latinoamérica.
-            </p>
-            <p class="text-lg text-text-secondary leading-relaxed">
-              Sabemos que WhatsApp es el corazón de las ventas en nuestra región. Por eso, hemos creado una herramienta que no solo organiza tus contactos, sino que se convierte en un socio de ventas incansable que entiende tu negocio tan bien como tú.
-            </p>
-            <div class="grid grid-cols-2 gap-8 pt-4">
-              <div>
-                <p class="text-4xl font-black text-white">100%</p>
-                <p class="text-xs text-text-secondary uppercase tracking-widest font-bold mt-1">Latinoamericano</p>
-              </div>
-              <div>
-                <p class="text-4xl font-black text-white">24/7</p>
-                <p class="text-xs text-text-secondary uppercase tracking-widest font-bold mt-1">Soporte Humano</p>
-              </div>
-            </div>
-            <div class="pt-8 flex items-center gap-6">
-              <a href="https://wa.me/573015997188" target="_blank" class="flex items-center gap-4 group">
-                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-primary group-hover:text-background transition-all duration-300">
-                  <MessageCircle class="w-6 h-6" />
-                </div>
-                <div>
-                  <p class="text-sm font-black text-white">Hablemos directamente</p>
-                  <p class="text-xs text-text-secondary group-hover:text-primary transition-colors">WhatsApp Personal</p>
-                </div>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -318,7 +195,7 @@
             <li><NuxtLink to="/features" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Características</NuxtLink></li>
             <li><NuxtLink to="/demo" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Video Demo</NuxtLink></li>
             <li><a href="#pricing" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Planes de Precios</a></li>
-            <li><a href="#about" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Sobre Nosotros</a></li>
+            <li><NuxtLink to="/about" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Sobre Nosotros</NuxtLink></li>
           </ul>
         </div>
 
@@ -378,68 +255,13 @@ import {
   MessageCircle, 
   Mail, 
   Phone, 
-  ExternalLink, 
   ChevronRight,
-  ArrowRight,
-  Check,
-  Bot,
-  Users,
-  Database,
-  ShieldCheck,
-  Rocket,
-  UserCircle
+  Check
 } from 'lucide-vue-next'
 
 definePageMeta({
   layout: false
 })
-
-const creatorPhoto = ref(null) // El usuario puede asignar una URL aquí después
-
-const features = [
-  { 
-    title: 'Clouser AI 24/7', 
-    description: 'Nuestra IA persuade y cierra ventas incluso mientras duermes, entrenada específicamente para tus productos.',
-    icon: Bot,
-    bg: 'bg-primary/20'
-  },
-  { 
-    title: 'CRM Multi-Agente', 
-    description: 'Gestiona todos tus prospectos de WhatsApp en un solo lugar con etiquetas y seguimiento avanzado.',
-    icon: Users,
-    bg: 'bg-blue-500/20'
-  },
-  { 
-    title: 'Entrenamiento IA', 
-    description: 'Sube tus catálogos y documentos. Tu IA aprenderá cada detalle de tu negocio en segundos.',
-    icon: Database,
-    bg: 'bg-purple-500/20'
-  },
-  { 
-    title: 'Seguridad Total', 
-    description: 'Tus datos y los de tus clientes están protegidos con cifrado de grado militar en la nube.',
-    icon: ShieldCheck,
-    bg: 'bg-green-500/20'
-  },
-  { 
-    title: 'Integración Directa', 
-    description: 'Conexión oficial con WhatsApp Cloud API para una estabilidad y velocidad profesional.',
-    icon: Zap,
-    bg: 'bg-yellow-500/20'
-  },
-  { 
-    title: 'Escalabilidad LatAm', 
-    description: 'Diseñado específicamente para el mercado latino, entendiendo modismos y comportamientos locales.',
-    icon: Rocket,
-    bg: 'bg-red-500/20'
-  }
-]
-
-const demoSteps = [
-  { number: '01', title: 'Entrenamiento', desc: 'Sube la información de tus productos.' },
-  { number: '02', title: 'Conexión', desc: 'Vincula tu WhatsApp en 1 minuto.' },
-  { number: '03', title: 'Automatización', desc: 'La IA empieza a cerrar ventas por ti.' }
-]
 </script>
 
 <style scoped>
@@ -457,13 +279,4 @@ const demoSteps = [
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-.card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border-radius: 3rem;
-  transition: all 0.3s ease;
-}
 </style>
-
