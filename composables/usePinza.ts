@@ -288,12 +288,26 @@ export const usePinza = () => {
 
   const fetchProfile = async () => {
     if (!user.value) return
-    const { data } = await (supabase.from('profiles') as any)
+    const { data, error: fetchError } = await (supabase.from('profiles') as any)
       .select('*')
       .eq('id', user.value.id)
       .single()
 
-    profile.value = data
+    if (fetchError || !data) {
+      // Si el perfil no existe, intentamos crearlo (Plan Emprendedor por defecto)
+      const { data: newData } = await (supabase.from('profiles') as any)
+        .insert({ 
+          id: user.value.id, 
+          subscription_plan: 'Emprendedor',
+          updated_at: new Date().toISOString()
+        })
+        .select()
+        .single()
+      
+      profile.value = newData
+    } else {
+      profile.value = data
+    }
   }
 
   const updateProfile = async (updates: Record<string, any>) => {

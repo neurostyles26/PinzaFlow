@@ -241,7 +241,8 @@ import {
   ChevronRight,
   Sparkles,
   Bot,
-  ArrowUpRight
+  ArrowUpRight,
+  Rocket
 } from 'lucide-vue-next'
 
 const user = useSupabaseUser()

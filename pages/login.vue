@@ -100,7 +100,8 @@ const handleLogin = async () => {
   if (authError) {
     error.value = authError.message
   } else {
-    navigateTo('/dashboard')
+    // Usamos window.location para forzar una recarga limpia de la sesión en el navegador
+    window.location.href = '/dashboard'
   }
   
   loading.value = false
