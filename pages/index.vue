@@ -10,7 +10,7 @@
         
         <div class="hidden md:flex items-center gap-8">
           <NuxtLink to="/features" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Características</NuxtLink>
-          <a href="#pricing" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Precios</a>
+          <NuxtLink to="/#pricing" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Precios</NuxtLink>
           <NuxtLink to="/about" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Sobre Nosotros</NuxtLink>
           <NuxtLink to="/login" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Iniciar Sesión</NuxtLink>
           <NuxtLink to="/signup" class="btn-primary py-2 px-6 text-sm font-bold">Empezar Ahora</NuxtLink>
@@ -194,7 +194,7 @@
           <ul class="space-y-4 text-text-secondary font-bold text-sm">
             <li><NuxtLink to="/features" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Características</NuxtLink></li>
             <li><NuxtLink to="/demo" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Video Demo</NuxtLink></li>
-            <li><a href="#pricing" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Planes de Precios</a></li>
+            <li><NuxtLink to="/#pricing" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Planes de Precios</NuxtLink></li>
             <li><NuxtLink to="/about" class="hover:text-primary transition-colors flex items-center gap-2 group"><ChevronRight class="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Sobre Nosotros</NuxtLink></li>
           </ul>
         </div>

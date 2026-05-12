@@ -8,6 +8,7 @@
         </NuxtLink>
         <div class="hidden md:flex items-center gap-8">
           <NuxtLink to="/features" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Características</NuxtLink>
+          <NuxtLink to="/#pricing" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Precios</NuxtLink>
           <NuxtLink to="/about" class="text-sm font-medium text-primary">Sobre Nosotros</NuxtLink>
           <NuxtLink to="/login" class="text-sm font-medium text-text-secondary hover:text-white transition-colors">Iniciar Sesión</NuxtLink>
           <NuxtLink to="/signup" class="btn-primary py-2 px-6 text-sm font-bold">Empezar Ahora</NuxtLink>
